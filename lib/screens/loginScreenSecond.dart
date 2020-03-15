@@ -1,6 +1,8 @@
 import 'package:braillekeyboardgame/constant/constants.dart';
+import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_progress_button/flutter_progress_button.dart';
 
 class LoginScreenSecond extends StatefulWidget {
   static const routeName = '/loginScreenSecond';
@@ -31,13 +33,16 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Text(
-                '"Braille is knowledge, and knowledge is power." -',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: headThird,
-                  color: thirdHeadColor,
-                  fontStyle: FontStyle.italic,
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Text(
+                  '"Braille is knowledge, and knowledge is power." -',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: headThird,
+                    color: thirdHeadColor,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
               Text(
@@ -47,6 +52,31 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                   fontSize: headThird,
                   color: thirdHeadColor,
                   fontStyle: FontStyle.italic,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: ProgressButton(
+                  defaultWidget: Text(
+                    'Start learning now !',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: headThird,
+                      color: Colors.black,
+                      //fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  progressWidget: CircularProgressIndicator(),
+                  borderRadius: 20,
+                  width: getPercentSize(80, false, context),
+                  height: 60,
+                  color: Colors.white,
+                  type: ProgressButtonType.Flat,
+                  onPressed: () async {
+                    int score = await Future.delayed(
+                        const Duration(milliseconds: 3000), () => 42);
+                  },
                 ),
               ),
             ],

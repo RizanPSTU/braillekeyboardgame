@@ -17,6 +17,8 @@ dependencies:
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.14.0+5
   cloud_firestore: ^0.12.9+5
+  #Firebase end
+  flutter_progress_button: ^1.0.0
 
 dev_dependencies:
   flutter_test:
