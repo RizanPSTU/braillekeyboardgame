@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "585799060954",
+    "firebase_url": "https://aprende-brailling-82394462.firebaseio.com",
+    "project_id": "aprende-brailling-82394462",
+    "storage_bucket": "aprende-brailling-82394462.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585799060954:android:81524e2935044f1114c4e3",
+        "android_client_info": {
+          "package_name": "com.brailling.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585799060954-daucibpqvaa4dtj8o0m44kpnks07ehmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brailling.app",
+            "certificate_hash": "9114500adaef9875e7720ce302c353184b436010"
+          }
+        },
+        {
+          "client_id": "585799060954-l43lh68spi71rbd8f0cjcnjrr6fau3al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDyVfYNxp7NzVoW4GibY1cJX608CuTbOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585799060954-l43lh68spi71rbd8f0cjcnjrr6fau3al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
