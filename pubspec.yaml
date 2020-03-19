@@ -15,10 +15,14 @@ dependencies:
   flutter_icons: ^1.0.0+1
   #Firebase Related
   firebase_core: ^0.4.4+3
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+5
+  firebase_analytics: ^5.0.11
+  cloud_firestore: ^0.13.4+2
+  firebase_auth: ^0.15.5+2
+  google_sign_in: ^4.1.4  
   #Firebase end
+  rxdart: 0.20.0
   flutter_progress_button: ^1.0.0
+  audioplayers: ^0.14.1
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +30,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/audio/pop.mp3
+    - assets/json/keyboard.json

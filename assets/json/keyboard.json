@@ -1,0 +1,33 @@
+[
+    {
+        "Conbination": [
+            "1"
+        ],
+        "Char": "a"
+    },
+    {
+        "Conbination": [
+            12,
+            21
+        ],
+        "Char": "b"
+    },
+    {
+        "Conbination": [
+            14,
+            41
+        ],
+        "Char": "c"
+    },
+    {
+        "Conbination": [
+            145,
+            154,
+            415,
+            451,
+            514,
+            541
+        ],
+        "Char": "d"
+    }
+]

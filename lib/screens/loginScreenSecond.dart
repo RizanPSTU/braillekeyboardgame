@@ -1,7 +1,8 @@
+import 'package:braillekeyboardgame/backend/auth.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/loginScreenThird.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
 
 class LoginScreenSecond extends StatefulWidget {
@@ -74,8 +75,8 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                   color: Colors.white,
                   type: ProgressButtonType.Flat,
                   onPressed: () async {
-                    int score = await Future.delayed(
-                        const Duration(milliseconds: 3000), () => 42);
+                    await oldToNew();
+                    Navigator.of(context).pushNamed(LoginScreenThird.routeName);
                   },
                 ),
               ),

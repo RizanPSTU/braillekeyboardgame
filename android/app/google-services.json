@@ -15,10 +15,39 @@
       },
       "oauth_client": [
         {
-          "client_id": "585799060954-daucibpqvaa4dtj8o0m44kpnks07ehmi.apps.googleusercontent.com",
+          "client_id": "585799060954-l43lh68spi71rbd8f0cjcnjrr6fau3al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDyVfYNxp7NzVoW4GibY1cJX608CuTbOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585799060954-l43lh68spi71rbd8f0cjcnjrr6fau3al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585799060954:android:4413e36011988a5514c4e3",
+        "android_client_info": {
+          "package_name": "com.brailling.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585799060954-3dksht8ia62stltn0rj47tp6htflsv32.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.brailling.app",
+            "package_name": "com.brailling.game",
             "certificate_hash": "9114500adaef9875e7720ce302c353184b436010"
           }
         },
