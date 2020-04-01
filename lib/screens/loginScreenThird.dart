@@ -1,5 +1,6 @@
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/loginScreenFourth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -59,7 +60,10 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed(LoginScreenFourth.routeName);
+                    },
                     child: Text(
                       "Yes!",
                       textAlign: TextAlign.center,
@@ -87,7 +91,6 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                         color: thirdHeadColor,
                         size: iconSizeDot,
                       ),
-                      
                     ],
                   ),
                 ),
@@ -99,4 +102,3 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
     );
   }
 }
-

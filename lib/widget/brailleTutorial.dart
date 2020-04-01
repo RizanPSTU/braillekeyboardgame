@@ -1,5 +1,6 @@
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/endTutorialScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,10 @@ import 'package:flutter/services.dart';
 AudioCache player = AudioCache(prefix: 'audio/');
 bool isNumberActive = false;
 
-playsound() async {
+playsound(BuildContext context) async {
   player.play('pop.mp3');
   HapticFeedback.vibrate();
+  Navigator.of(context).pushNamed(EndTutorialScreen.routeName);
 }
 
 String cheackWhatPressedAndWhatShouldBePressed(
@@ -79,14 +81,15 @@ String removeListDebree(String value) {
   return value;
 }
 
-class BarilleMainSixDot extends StatefulWidget {
-  BarilleMainSixDot({Key key}) : super(key: key);
+class BarilleMainSixDotTutorial extends StatefulWidget {
+  BarilleMainSixDotTutorial({Key key}) : super(key: key);
 
   @override
-  _BarilleMainSixDotState createState() => _BarilleMainSixDotState();
+  _BarilleMainSixDotTutorialState createState() =>
+      _BarilleMainSixDotTutorialState();
 }
 
-class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
+class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
   List<int> values = new List();
   // String valuesSee = "";
   String valuesPass = "";
@@ -189,6 +192,12 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
       charPress = "Delete";
       isLeft = false;
     }
+    // print("char pass =>${charPress.length}");
+    // if (charPress.length > 0) {
+    //   print("charpass len 1");
+    //   Navigator.of(context).pushNamed(EndTutorialScreen.routeName);
+    // }
+
     return RawGestureDetector(
       gestures: {
         HorizontalMultiDragGestureRecognizer:
@@ -251,7 +260,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(1);
                                   }
                                   if (!booldot1) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot1 = true;
                                   // print("Do1");
@@ -261,7 +270,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(2);
                                   }
                                   if (!booldot2) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot2 = true;
                                   // print("Dot2");
@@ -271,7 +280,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(3);
                                   }
                                   if (!booldot3) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot3 = true;
                                   // print("Dot3");
@@ -281,7 +290,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(4);
                                   }
                                   if (!booldot4) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot4 = true;
                                   // print("Dot4");
@@ -291,7 +300,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(5);
                                   }
                                   if (!booldot5) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot5 = true;
                                   // print("Dot5");
@@ -301,7 +310,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     values.add(6);
                                   }
                                   if (!booldot6) {
-                                    playsound();
+                                    playsound(context);
                                   }
                                   booldot6 = true;
                                   // print("Dot6");

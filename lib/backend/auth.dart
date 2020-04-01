@@ -19,6 +19,18 @@ Future oldToNew() async {
   }
 }
 
+Future<int> checkOldToNew() async {
+  try {
+    var map = await Firestore.instance.collection('/users').document(uid).get();
+    print(uid);
+    print(map.data["new"]);
+    return map.data["new"];
+  } catch (e) {
+    print(e);
+    return -1;
+  }
+}
+
 class AuthService {
   // Dependencies
   final GoogleSignIn _googleSignIn = GoogleSignIn();

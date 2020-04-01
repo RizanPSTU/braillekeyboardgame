@@ -1,8 +1,22 @@
+import 'dart:convert';
+
 import 'package:braillekeyboardgame/constant/constants.dart';
+import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreenSecond.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:braillekeyboardgame/backend/auth.dart';
+
+List jsonAlfabete;
+List jsonNumber;
+
+loadJson() async {
+  String data = await rootBundle.loadString('assets/json/keyboard.json');
+  jsonAlfabete = json.decode(data);
+  data = await rootBundle.loadString('assets/json/number.json');
+  jsonNumber = json.decode(data);
+}
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/loginScreeen';
@@ -12,6 +26,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await loadJson();
+
+      checkOldToNew().then((int onValue) {
+        if (onValue == 1) {
+          // print("");
+          Navigator.of(context).pushNamed(HomeScreen.routeName);
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,8 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 20,
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       // print("G te tip dise");
+                      await checkOldToNew();
                       Navigator.of(context)
                           .pushNamed(LoginScreenSecond.routeName);
                     },

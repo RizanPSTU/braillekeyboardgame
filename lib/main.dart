@@ -1,7 +1,10 @@
+import 'package:braillekeyboardgame/screens/endTutorialScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
+import 'package:braillekeyboardgame/screens/loginScreenFourth.dart';
 import 'package:braillekeyboardgame/screens/loginScreenSecond.dart';
 import 'package:braillekeyboardgame/screens/loginScreenThird.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
+import 'package:braillekeyboardgame/screens/tutorialScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -34,13 +37,16 @@ class MyApp extends StatelessWidget {
       title: 'BrailleGame',
       initialRoute: '/',
       routes: {
-        // '/': (context) => LoginScreen(),
-        // LoginScreenSecond.routeName: (context) => LoginScreenSecond(),
-        // LoginScreenThird.routeName: (context) => LoginScreenThird(),
-        // HomeScreen.routeName: (context) => HomeScreen(),
+        '/': (context) => LoginScreen(),
+        LoginScreenSecond.routeName: (context) => LoginScreenSecond(),
+        LoginScreenThird.routeName: (context) => LoginScreenThird(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        LoginScreenFourth.routeName: (context) => LoginScreenFourth(),
+        TutorialScreen.routeName: (context) => TutorialScreen(),
+        EndTutorialScreen.routeName: (context) => EndTutorialScreen(),
         // '/': (context) => LoginScreenSecond(),
         // LoginScreenSecond.routeName: (context) => LoginScreenSecond(),
-        '/': (context) => HomeScreen(),
+        // '/': (context) => HomeScreen(),
       },
     );
   }
