@@ -1,7 +1,6 @@
 name: braillekeyboardgame
 description: Braile app
 
-
 version: 1.0.0+1
 
 environment:
@@ -18,7 +17,7 @@ dependencies:
   firebase_analytics: ^5.0.11
   cloud_firestore: ^0.13.4+2
   firebase_auth: ^0.15.5+2
-  google_sign_in: ^4.1.4  
+  google_sign_in: ^4.1.4
   #Firebase end
   rxdart: 0.20.0
   flutter_progress_button: ^1.0.0
@@ -33,3 +32,4 @@ flutter:
   assets:
     - assets/audio/pop.mp3
     - assets/json/keyboard.json
+    - assets/json/number.json

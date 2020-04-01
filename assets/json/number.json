@@ -1,0 +1,46 @@
+[
+  {
+    "Combination": ["1"],
+    "Char": "1"
+  },
+  {
+    "Combination": ["12"],
+    "Char": "2"
+  },
+  {
+    "Combination": ["14"],
+    "Char": "3"
+  },
+  {
+    "Combination": ["145"],
+    "Char": "4"
+  },
+  {
+    "Combination": ["15"],
+    "Char": "5"
+  },
+  {
+    "Combination": ["124"],
+    "Char": "6"
+  },
+  {
+    "Combination": ["1245"],
+    "Char": "7"
+  },
+  {
+    "Combination": ["125"],
+    "Char": "8"
+  },
+  {
+    "Combination": ["24"],
+    "Char": "9"
+  },
+  {
+    "Combination": ["245"],
+    "Char": "0"
+  },
+  {
+    "Combination": ["3456"],
+    "Char": "NA"
+  }
+]

@@ -1,33 +1,179 @@
 [
-    {
-        "Conbination": [
-            "1"
-        ],
-        "Char": "a"
-    },
-    {
-        "Conbination": [
-            12,
-            21
-        ],
-        "Char": "b"
-    },
-    {
-        "Conbination": [
-            14,
-            41
-        ],
-        "Char": "c"
-    },
-    {
-        "Conbination": [
-            145,
-            154,
-            415,
-            451,
-            514,
-            541
-        ],
-        "Char": "d"
-    }
+  {
+    "Combination": ["1"],
+    "Char": "a"
+  },
+  {
+    "Combination": ["12"],
+    "Char": "b"
+  },
+  {
+    "Combination": ["14"],
+    "Char": "c"
+  },
+  {
+    "Combination": ["145"],
+    "Char": "d"
+  },
+  {
+    "Combination": ["15"],
+    "Char": "e"
+  },
+  {
+    "Combination": ["124"],
+    "Char": "f"
+  },
+  {
+    "Combination": ["1245"],
+    "Char": "g"
+  },
+  {
+    "Combination": ["125"],
+    "Char": "h"
+  },
+  {
+    "Combination": ["24"],
+    "Char": "i"
+  },
+  {
+    "Combination": ["245"],
+    "Char": "j"
+  },
+  {
+    "Combination": ["13"],
+    "Char": "k"
+  },
+  {
+    "Combination": ["123"],
+    "Char": "l"
+  },
+  {
+    "Combination": ["134"],
+    "Char": "m"
+  },
+  {
+    "Combination": ["1345"],
+    "Char": "n"
+  },
+  {
+    "Combination": ["12456"],
+    "Char": "ñ"
+  },
+  {
+    "Combination": ["135"],
+    "Char": "o"
+  },
+  {
+    "Combination": ["1234"],
+    "Char": "p"
+  },
+  {
+    "Combination": ["13"],
+    "Char": "q"
+  },
+  {
+    "Combination": ["1235"],
+    "Char": "r"
+  },
+  {
+    "Combination": ["234"],
+    "Char": "s"
+  },
+  {
+    "Combination": ["2345"],
+    "Char": "t"
+  },
+  {
+    "Combination": ["136"],
+    "Char": "u"
+  },
+  {
+    "Combination": ["1256"],
+    "Char": "ü"
+  },
+  {
+    "Combination": ["1236"],
+    "Char": "v"
+  },
+  {
+    "Combination": ["2456"],
+    "Char": "w"
+  },
+  {
+    "Combination": ["1346"],
+    "Char": "x"
+  },
+  {
+    "Combination": ["13456"],
+    "Char": "y"
+  },
+  {
+    "Combination": ["1356"],
+    "Char": "z"
+  },
+  {
+    "Combination": ["12356"],
+    "Char": "á"
+  },
+  {
+    "Combination": ["2346"],
+    "Char": "é"
+  },
+  {
+    "Combination": ["34"],
+    "Char": "í"
+  },
+  {
+    "Combination": ["346"],
+    "Char": "ó"
+  },
+  {
+    "Combination": ["23456"],
+    "Char": "ú"
+  },
+
+  {
+    "Combination": ["3"],
+    "Char": "."
+  },
+  {
+    "Combination": ["26"],
+    "Char": "?"
+  },
+  {
+    "Combination": ["36"],
+    "Char": "-"
+  },
+  {
+    "Combination": ["2"],
+    "Char": ","
+  },
+  {
+    "Combination": ["24"],
+    "Char": ":"
+  },
+  {
+    "Combination": ["23"],
+    "Char": ";"
+  },
+  {
+    "Combination": ["235"],
+    "Char": "¡"
+  },
+  {
+    "Combination": ["236"],
+    "Char": "'"
+  },
+  {
+    "Combination": ["126"],
+    "Char": "("
+  },
+  {
+    "Combination": ["345"],
+    "Char": ")"
+  },
+  {
+    "Combination": ["3456"],
+    "Char": "NA"
+  }
 ]
