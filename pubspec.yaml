@@ -33,3 +33,4 @@ flutter:
     - assets/audio/pop.mp3
     - assets/json/keyboard.json
     - assets/json/number.json
+    - assets/bicon.png

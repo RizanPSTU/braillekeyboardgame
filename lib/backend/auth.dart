@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rxdart/rxdart.dart';
 
 String uid = "";
+String proUrl = "";
 
 Future oldToNew() async {
   var map = new Map<String, dynamic>();
@@ -49,6 +50,7 @@ class AuthService {
     profile = user.switchMap((FirebaseUser u) {
       if (u != null) {
         uid = u.uid;
+        proUrl = u.photoUrl;
         return _db
             .collection('users')
             .document(u.uid)
