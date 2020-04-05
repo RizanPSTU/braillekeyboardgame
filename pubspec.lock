@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  count_down_timer:
+    dependency: "direct main"
+    description:
+      name: count_down_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   crypto:
     dependency: transitive
     description:

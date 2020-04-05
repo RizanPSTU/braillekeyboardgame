@@ -3,16 +3,19 @@ import 'package:braillekeyboardgame/backend/getData.dart';
 import 'package:braillekeyboardgame/backend/userData.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:flutter/material.dart';
 
 int tootalScore = 0;
 int comlevel = 0;
+
 String code = "";
 int timeInt;
 int pointInt;
 int levelInt;
 String processM = "";
 String titleM = "";
+String win = "";
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/homeScreen';
@@ -28,13 +31,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       getScore().then((int onValue) {
-        if (onValue >= 1) {
+        if (onValue == null) {
+          tootalScore = 0;
+        } else if (onValue >= 1) {
           tootalScore = onValue;
         }
       });
 
       getLevel().then((int onValue) {
-        if (onValue >= 1) {
+        if (onValue == null) {
+          comlevel = 0;
+        } else if (onValue >= 1) {
           comlevel = onValue;
         }
       });
@@ -123,18 +130,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return MaterialButton(
                         onPressed: () {
-                          print("teststset");
+                          code = snapshot.data.documents[index].data["code"];
+                          timeInt = int.parse(
+                              snapshot.data.documents[index].data["time"]);
+                          pointInt = int.parse(
+                              snapshot.data.documents[index].data["point"]);
+
+                          processM =
+                              snapshot.data.documents[index].data["process"];
+                          titleM = snapshot.data.documents[index].data["title"];
+                          win = snapshot.data.documents[index].data["win"];
+                          Navigator.of(context)
+                              .pushNamed(InstructionScreen.routeName);
                         },
                         child: level(
                           context: context,
                           learn: snapshot.data.documents[index].data["learn"],
                           level: snapshot.data.documents[index].data["id"],
-                          point: snapshot.data.documents[index].data["point"],
-                          time: snapshot.data.documents[index].data["time"],
-                          code: snapshot.data.documents[index].data["code"],
-                          process:
-                              snapshot.data.documents[index].data["process"],
-                          title: snapshot.data.documents[index].data["title"],
                         ),
                       );
                     },
@@ -153,19 +165,15 @@ Widget level({
   BuildContext context,
   String learn,
   String level,
-  String point,
-  String time,
-  String code,
-  String process,
-  String title,
 }) {
-  timeInt = int.parse(time);
-  pointInt = int.parse(point);
-  levelInt = int.parse(level);
+  // timeInt = int.parse(time);
+  // pointInt = int.parse(point);
+  // levelInt = int.parse(level);
 
-  code = "";
-  processM = "";
-  titleM = "";
+  // code = "";
+  // processM = "";
+  // titleM = "";
+  int lvl = int.parse(level);
 
   return Container(
     alignment: Alignment.centerLeft,
@@ -183,7 +191,7 @@ Widget level({
             textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: headSceonndtext,
-              color: levelInt <= comlevel ? Colors.pinkAccent : Colors.grey,
+              color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
             ),
           ),
         ),

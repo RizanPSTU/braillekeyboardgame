@@ -1,6 +1,8 @@
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
+import 'package:braillekeyboardgame/screens/playScreen.dart';
+import 'package:braillekeyboardgame/widget/brailleTutorial.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -10,15 +12,22 @@ import 'package:flutter/services.dart';
 AudioCache player = AudioCache(prefix: 'audio/');
 bool isNumberActive = false;
 
+bool isWon = false;
+
+String mainCode = "i_am_a_good_boy";
+String vulDhora = "";
+String wrongWrite = "";
+String corerctWrite = "";
+bool isPressed = false;
+int currentPos = -1;
+int mainCurrentPos = 0;
+
 playsound() async {
   player.play('pop.mp3');
   HapticFeedback.vibrate();
 }
 
-String cheackWhatPressedAndWhatShouldBePressed(
-  String dotCombination,
-  String goal,
-) {
+String cheackWhatPressedAndWhatShouldBePressed(String dotCombination) {
   bool isContain = false;
   String comb;
   String char;
@@ -62,13 +71,13 @@ String cheackWhatPressedAndWhatShouldBePressed(
     }
   }
   // print(char);
-  if (isContain && char == "NA" && isNumberActive == false) {
+  if (isContain && char == "N" && isNumberActive == false) {
     isNumberActive = true;
-  } else if (isContain && char == "NA" && isNumberActive == true) {
+  } else if (isContain && char == "N" && isNumberActive == true) {
     isNumberActive = false;
   }
 
-  return isContain ? char : "Unknown";
+  return isContain ? char : "U";
 }
 
 String removeListDebree(String value) {
@@ -180,14 +189,96 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
     }
 
     if (jsonAlfabete != null && valuesPass.length > 0 && jsonNumber != null) {
-      charPress = cheackWhatPressedAndWhatShouldBePressed(valuesPass, "a");
+      charPress = cheackWhatPressedAndWhatShouldBePressed(valuesPass);
+      valuesPass = "";
+      isPressed = true;
     }
     if (isright) {
-      charPress = "Space";
+      charPress = "_";
+      // print("ts");
+      isPressed = true;
       isright = false;
     } else if (isLeft) {
-      charPress = "Delete";
+      charPress = "D";
+      // print("td");
+      isPressed = true;
       isLeft = false;
+    }
+    if (!isTimeFinished) {
+      if (!isWon) {
+        if (isPressed) {
+          if (charPress != "D" && charPress != "N") {
+            if (charPress != "U") {
+              wrongWrite = wrongWrite + charPress;
+              currentPos++;
+              if (currentPos == mainCurrentPos) {
+                if (mainCode[mainCurrentPos] == wrongWrite[currentPos]) {
+                  mainCurrentPos++;
+                  // currentPos++;
+                  vulDhora = "";
+                } else {
+                  if (mainCode[mainCurrentPos] == "_") {
+                    vulDhora =
+                        "Wring: Should be Space not ${wrongWrite[currentPos]}";
+                  } else {
+                    vulDhora =
+                        "Wring: Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
+                  }
+                }
+              } else {
+                vulDhora = "Wring: Remove extra charecter";
+              }
+            } else {
+              vulDhora = "Wring: Unknown Barille :3";
+            }
+          }
+
+          if (charPress == "N") {
+            if (isNumberActive) {
+              vulDhora = "Number mode activated";
+            } else {
+              vulDhora = "Number mode deactivated";
+            }
+          }
+
+          if (charPress == "D") {
+            if (currentPos >= mainCurrentPos) {
+              if (wrongWrite.length > 1) {
+                wrongWrite = wrongWrite.substring(0, wrongWrite.length - 1);
+                currentPos--;
+              } else if (wrongWrite.length == 1) {
+                wrongWrite = "";
+                currentPos--;
+              } else if (wrongWrite.length == 0) {
+                vulDhora = "Wrong: Nothing to remove";
+              }
+            } else if (currentPos == 0) {
+              wrongWrite = "";
+              currentPos = -1;
+            } else if (currentPos == -1) {
+              vulDhora = "Wrong: Nothing to remove";
+            } else {
+              vulDhora = "Wrong: Already got right no need to delete";
+            }
+          }
+
+          isPressed = false;
+          charPress = "";
+          // print("Write ===>$write");
+          print("is pr ===>$currentPos");
+        }
+      } else {
+        wrongWrite = "";
+        vulDhora = "you won :3 yhaaa :3";
+      }
+    } else {
+      wrongWrite = "";
+      vulDhora = "time finished :3 sorry try again :3";
+    }
+
+    if (mainCurrentPos == mainCode.length) {
+      isWon = true;
+      print("You won yhaaaaaa");
     }
     return RawGestureDetector(
       gestures: {
@@ -392,7 +483,16 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   ),
                                   Container(
                                     child: Text(
-                                      "$charPress",
+                                      "$wrongWrite",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "$vulDhora",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Colors.red,
