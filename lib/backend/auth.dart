@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 String uid = "";
 String proUrl = "";
+String name = "";
 
 Future oldToNew() async {
   var map = new Map<String, dynamic>();
@@ -50,7 +51,10 @@ class AuthService {
     profile = user.switchMap((FirebaseUser u) {
       if (u != null) {
         uid = u.uid;
+        print("uidddd ===>$uid");
         proUrl = u.photoUrl;
+        print("uidddd ===>$proUrl");
+        name = u.displayName;
         return _db
             .collection('users')
             .document(u.uid)

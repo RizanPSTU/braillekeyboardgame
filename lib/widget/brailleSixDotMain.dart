@@ -2,7 +2,6 @@ import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
 import 'package:braillekeyboardgame/screens/playScreen.dart';
-import 'package:braillekeyboardgame/widget/brailleTutorial.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

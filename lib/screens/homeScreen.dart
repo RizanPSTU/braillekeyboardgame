@@ -4,6 +4,8 @@ import 'package:braillekeyboardgame/backend/userData.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
+import 'package:braillekeyboardgame/screens/usersScreen.dart';
+
 import 'package:flutter/material.dart';
 
 int tootalScore = 0;
@@ -48,11 +50,71 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _drawerKey,
+      // key: _scaffoldKey,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.black,
+      // ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.grey,
+          child: Stack(
+            children: <Widget>[
+              ListView(
+                padding: EdgeInsets.only(top: 50),
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.home,
+                            size: 30,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Home",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // ListTile(
+                  //   title: Text('Item 4'),
+                  //   onTap: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  // ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text('Made with ♥'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
-        // child: BarilleMainSixDot(),
         child: Column(
           children: <Widget>[
             Container(
@@ -66,14 +128,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      height: 50,
-                      width: 50,
-                      child: Image.asset('assets/bicon.png'),
+                    GestureDetector(
+                      onTap: () {
+                        print("on tap");
+                        // _scaffoldKey.currentState.openDrawer();
+                        // Scaffold.of(context).openDrawer();
+                        if (_drawerKey.currentState.isDrawerOpen) {
+                          _drawerKey.currentState.openEndDrawer();
+                        } else {
+                          _drawerKey.currentState.openDrawer();
+                        }
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        child: Image.asset('assets/bicon.png'),
+                      ),
                     ),
-                    CircleAvatar(
-                      minRadius: 35,
-                      backgroundImage: NetworkImage(proUrl),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(UserScreen.routeName);
+                      },
+                      child: CircleAvatar(
+                        minRadius: 35,
+                        backgroundImage: NetworkImage(proUrl),
+                      ),
                     ),
                     // Container(
                     //   height: 50,
@@ -85,33 +164,34 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Container(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: Text(
-                        "Learning Braille!",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
+              alignment: Alignment.centerLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Text(
+                      "Learning Braille!",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        "Your actual score is:$tootalScore!",
-                        style: TextStyle(
-                          fontSize: 15,
-                          // fontWeight: FontWeight.bold,
-                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text(
+                      "Your actual score is:$tootalScore!",
+                      style: TextStyle(
+                        fontSize: 15,
+                        // fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
             StreamBuilder(
               stream: getDedicationNumber(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -124,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // print(snapshot.data.documents[0].data);
                 // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
                 return Container(
-                  height: getPercentSize(70, true, context),
+                  height: getPercentSize(50, true, context),
                   child: ListView.builder(
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (BuildContext context, int index) {

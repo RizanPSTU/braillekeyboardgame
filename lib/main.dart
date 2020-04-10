@@ -7,6 +7,7 @@ import 'package:braillekeyboardgame/screens/loginScreenSecond.dart';
 import 'package:braillekeyboardgame/screens/loginScreenThird.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/playScreen.dart';
+import 'package:braillekeyboardgame/screens/usersScreen.dart';
 import 'package:braillekeyboardgame/screens/tutorialScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         InstructionScreen.routeName: (context) => InstructionScreen(),
         GameEndScreen.routeName: (context) => GameEndScreen(),
         PlayScreen.routeName: (context) => PlayScreen(),
+        UserScreen.routeName: (context) => UserScreen(),
         // '/': (context) => LoginScreenSecond(),
         // LoginScreenSecond.routeName: (context) => LoginScreenSecond(),
         // '/': (context) => HomeScreen(),

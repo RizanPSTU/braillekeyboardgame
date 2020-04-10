@@ -1,4 +1,3 @@
-import 'package:braillekeyboardgame/backend/auth.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/loginScreenThird.dart';
@@ -24,6 +23,11 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              Container(
+                height: 250,
+                width: 250,
+                child: Image.asset('assets/logo.png'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 50, bottom: 20),
                 child: Text(
@@ -75,7 +79,6 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                   color: Colors.white,
                   type: ProgressButtonType.Flat,
                   onPressed: () async {
-                    
                     Navigator.of(context).pushNamed(LoginScreenThird.routeName);
                   },
                 ),

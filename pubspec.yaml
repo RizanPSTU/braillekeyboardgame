@@ -22,11 +22,16 @@ dependencies:
   rxdart: 0.20.0
   flutter_progress_button: ^1.0.0
   audioplayers: ^0.14.1
-  count_down_timer: ^0.0.6
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.7.3"
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.jpg"
 
 flutter:
   uses-material-design: true
@@ -35,3 +40,6 @@ flutter:
     - assets/json/keyboard.json
     - assets/json/number.json
     - assets/bicon.png
+    - assets/google.png
+    - assets/logo.png
+    - assets/icon.jpg

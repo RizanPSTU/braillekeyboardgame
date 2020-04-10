@@ -5,7 +5,6 @@ import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreenSecond.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:braillekeyboardgame/backend/auth.dart';
 
 List jsonAlfabete;
@@ -34,8 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
       checkOldToNew().then((int onValue) {
         if (onValue == 1) {
-          // print("");
+          print("Home a jawar kotha");
           Navigator.of(context).pushNamed(HomeScreen.routeName);
+        } else {
+          print("Home a jy na kono prb ase ");
+          authService.signOut();
         }
       });
     });
@@ -101,27 +103,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    height: hightAndWidthOfSocialButton,
-                    width: hightAndWidthOfSocialButton,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue, width: 1),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Icon(
-                      FontAwesome.facebook,
-                      color: Colors.blue,
-                      size: iconSize,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  // Container(
+                  //   alignment: Alignment.center,
+                  //   height: hightAndWidthOfSocialButton,
+                  //   width: hightAndWidthOfSocialButton,
+                  //   decoration: BoxDecoration(
+                  //     border: Border.all(color: Colors.blue, width: 1),
+                  //     borderRadius: BorderRadius.circular(3),
+                  //   ),
+                  //   child: Icon(
+                  //     FontAwesome.facebook,
+                  //     color: Colors.blue,
+                  //     size: iconSize,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
                   GestureDetector(
                     onTap: () async {
-                      // print("G te tip dise");
-                      await checkOldToNew();
+                      print("G te tip dise");
+                      int oldOrNew = await checkOldToNew();
+                      print("old or new check ===>$oldOrNew");
                       Navigator.of(context)
                           .pushNamed(LoginScreenSecond.routeName);
                     },
@@ -130,16 +133,65 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: hightAndWidthOfSocialButton,
                       width: hightAndWidthOfSocialButton,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.red, width: 1),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Icon(
-                        FontAwesome.google,
-                        color: Colors.red,
-                        size: iconSize,
+                          // border: Border.all(color: Colors.red, width: 1),
+                          // borderRadius: BorderRadius.circular(3),
+                          ),
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        child: Image.asset('assets/google.png'),
                       ),
                     ),
                   ),
+
+                  // StreamBuilder(
+                  //     stream: authService.user,
+                  //     builder: (context, snapshot) {
+                  //       if (snapshot.hasData) {
+                  //         return MaterialButton(
+                  //           onPressed: () => authService.signOut(),
+                  //           color: Colors.red,
+                  //           textColor: Colors.white,
+                  //           child: Text('Signout'),
+                  //         );
+                  //       } else {
+                  //         return GestureDetector(
+                  //           onTap: () async {
+                  //             // print("G te tip dise");
+                  //             // authService.googleSignIn();
+                  //             int oldOrNew = await checkOldToNew();
+                  //             print("old or new check ===>$oldOrNew");
+                  //             Navigator.of(context)
+                  //                 .pushNamed(HomeScreen.routeName);
+                  //             // if (oldOrNew == 1) {
+                  //             //   print("1");
+                  //             //   Navigator.of(context)
+                  //             //       .pushNamed(HomeScreen.routeName);
+                  //             // } else if (oldOrNew == 0) {
+                  //             //   print("0");
+                  //             //   Navigator.of(context)
+                  //             //       .pushNamed(LoginScreenSecond.routeName);
+                  //             // } else {
+                  //             //   print("Something is wrong");
+                  //             // }
+                  //           },
+                  //           child: Container(
+                  //             alignment: Alignment.center,
+                  //             height: hightAndWidthOfSocialButton,
+                  //             width: hightAndWidthOfSocialButton,
+                  //             decoration: BoxDecoration(
+                  //                 // border: Border.all(color: Colors.red, width: 1),
+                  //                 // borderRadius: BorderRadius.circular(3),
+                  //                 ),
+                  //             child: Container(
+                  //               height: 50,
+                  //               width: 50,
+                  //               child: Image.asset('assets/google.png'),
+                  //             ),
+                  //           ),
+                  //         );
+                  //       }
+                  //     }),
                 ],
               ),
               LoginButton(),
@@ -164,10 +216,8 @@ class UserProfileState extends State<UserProfile> {
   @override
   initState() {
     super.initState();
-
     // Subscriptions are created here
     authService.profile.listen((state) => setState(() => _profile = state));
-
     authService.loading.listen((state) => setState(() => _loading = state));
   }
 
