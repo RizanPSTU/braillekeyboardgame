@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/gameEndScreen.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/widget/brailleSixDotMain.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,10 @@ import 'package:flutter/material.dart';
 Timer timer;
 int tickCount = 0;
 bool isTimeFinished = false;
+bool isWon = false;
+
+String wonText = "";
+int mainPoint = 0;
 
 class PlayScreen extends StatefulWidget {
   static const routeName = '/playScreen';
@@ -19,33 +24,53 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> {
   void startTimer() {
-    // Start the periodic timer which prints something after 5 seconds and then stop it .
-
     timer = new Timer.periodic(new Duration(seconds: 1), (time) {
-      // print('Something');
-      // print('${time.tick}');
       setState(() {
         tickCount = tickCount + 1;
       });
+      if (isWon) {
+        // print("won hoise");
+        Navigator.of(context).pushReplacementNamed(
+          GameEndScreen.routeName,
+          arguments: {
+            "won": "true",
+            "time": "false",
+            "msg": "$wonText : $mainPoint"
+          },
+        );
+      }
+
       if (tickCount == timeInt) {
         setState(() {
           isTimeFinished = true;
+          if (isTimeFinished) {
+            // print("timesesh");
+            Navigator.of(context).pushReplacementNamed(
+              GameEndScreen.routeName,
+              arguments: {"won": "false", "time": "true", "msg": "Retry"},
+            );
+          }
           time.cancel();
         });
       }
-      // time.cancel();
     });
   }
 
   @override
   void initState() {
     super.initState();
+    mainPoint = pointInt;
+    wonText = win;
+
     if (timer != null) {
       if (timer.isActive) {
         timer.cancel();
       }
     }
+    isTimeFinished = false;
+    isWon = false;
 
+    tickCount = 0;
     startTimer();
   }
 

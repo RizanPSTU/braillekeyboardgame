@@ -5,7 +5,6 @@ import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
-
 import 'package:flutter/material.dart';
 
 int tootalScore = 0;
@@ -14,7 +13,6 @@ int comlevel = 0;
 String code = "";
 int timeInt;
 int pointInt;
-int levelInt;
 String processM = "";
 String titleM = "";
 String win = "";
@@ -257,7 +255,7 @@ Widget level({
 
   return Container(
     alignment: Alignment.centerLeft,
-    height: getPercentSize(6, true, context),
+    height: getPercentSize(8, true, context),
     width: getPercentSize(100, false, context),
     // color: Colors.purple,
     child: Column(

@@ -69,7 +69,8 @@ class _InstructionScreenState extends State<InstructionScreen> {
                 color: Colors.white,
                 type: ProgressButtonType.Flat,
                 onPressed: () async {
-                  Navigator.of(context).pushNamed(PlayScreen.routeName);
+                  Navigator.of(context)
+                      .pushReplacementNamed(PlayScreen.routeName);
                 },
               ),
             ),

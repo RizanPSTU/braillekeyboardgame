@@ -1,5 +1,6 @@
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
 import 'package:braillekeyboardgame/screens/playScreen.dart';
 import 'package:flutter/gestures.dart';
@@ -10,14 +11,17 @@ import 'package:flutter/services.dart';
 
 AudioCache player = AudioCache(prefix: 'audio/');
 bool isNumberActive = false;
-
-bool isWon = false;
-
-String mainCode = "i_am_a_good_boy";
-String vulDhora = "";
-String wrongWrite = "";
-String corerctWrite = "";
 bool isPressed = false;
+
+//Ai duita home thika nitasi abong aita aise o firebase thika
+String mainCode = "";
+
+
+//bivinno vul dorar msg dibo => aita hy nai x hoibo
+String vulDhora = "";
+//wringWrite r mainCode same hoile jita
+String wrongWrite = "";
+
 int currentPos = -1;
 int mainCurrentPos = 0;
 
@@ -120,6 +124,19 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
   @override
   void initState() {
     super.initState();
+    isNumberActive = false;
+    isWon = false;
+    isPressed = false;
+
+    mainCode = code;
+    // mainPoint = pointInt;
+    // wonText = win;
+
+    vulDhora = "";
+    wrongWrite = "";
+
+    currentPos = -1;
+    mainCurrentPos = 0;
   }
 
   @override
@@ -189,7 +206,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
 
     if (jsonAlfabete != null && valuesPass.length > 0 && jsonNumber != null) {
       charPress = cheackWhatPressedAndWhatShouldBePressed(valuesPass);
-      valuesPass = "";
+      valuesPass =
+          ""; //jeita dot thika aisilo 1,2,4 amn type oita re "" amon korar jonno use korse
       isPressed = true;
     }
     if (isright) {
@@ -264,11 +282,14 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
           isPressed = false;
           charPress = "";
           // print("Write ===>$write");
-          print("is pr ===>$currentPos");
+          // print("is pr ===>$currentPos");
         }
       } else {
         wrongWrite = "";
-        vulDhora = "you won :3 yhaaa :3";
+        if (timer.isActive) {
+          timer.cancel();
+        }
+        vulDhora = "you won :3";
       }
     } else {
       wrongWrite = "";
@@ -277,7 +298,6 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
 
     if (mainCurrentPos == mainCode.length) {
       isWon = true;
-      print("You won yhaaaaaa");
     }
     return RawGestureDetector(
       gestures: {

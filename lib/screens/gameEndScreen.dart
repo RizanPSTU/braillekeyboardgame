@@ -11,9 +11,13 @@ class GameEndScreen extends StatefulWidget {
 class _GameEndScreenState extends State<GameEndScreen> {
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
     return Scaffold(
       body: SafeArea(
-        child: Text("Game end"),
+        child: Center(
+          child: Text("${args["msg"]}"),
+        ),
       ),
     );
   }
