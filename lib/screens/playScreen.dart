@@ -47,7 +47,11 @@ class _PlayScreenState extends State<PlayScreen> {
             // print("timesesh");
             Navigator.of(context).pushReplacementNamed(
               GameEndScreen.routeName,
-              arguments: {"won": "false", "time": "true", "msg": "Retry"},
+              arguments: {
+                "won": "false",
+                "time": "true",
+                "msg": "Sorry timesup please try again"
+              },
             );
           }
           time.cancel();

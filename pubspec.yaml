@@ -37,6 +37,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/audio/pop.mp3
+    - assets/audio/space.mp3
+    - assets/audio/delete.m4a
     - assets/json/keyboard.json
     - assets/json/number.json
     - assets/bicon.png

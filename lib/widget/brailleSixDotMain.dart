@@ -16,7 +16,6 @@ bool isPressed = false;
 //Ai duita home thika nitasi abong aita aise o firebase thika
 String mainCode = "";
 
-
 //bivinno vul dorar msg dibo => aita hy nai x hoibo
 String vulDhora = "";
 //wringWrite r mainCode same hoile jita
@@ -27,6 +26,16 @@ int mainCurrentPos = 0;
 
 playsound() async {
   player.play('pop.mp3');
+  HapticFeedback.vibrate();
+}
+
+playspace() async {
+  player.play('delete.m4a');
+  HapticFeedback.vibrate();
+}
+
+playdelete() async {
+  player.play('space.mp3');
   HapticFeedback.vibrate();
 }
 
@@ -163,11 +172,13 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
         if (isOff) {
           print("_handleDragEnd => ${details.velocity.pixelsPerSecond.dx}");
           if (rightC > leftC && details.velocity.pixelsPerSecond.dx > 150) {
+            playspace();
             print("Right Swipe");
             isright = true;
             isLeft = false;
           } else if (rightC < leftC &&
               details.velocity.pixelsPerSecond.dx < -150) {
+            playdelete();
             print("Left Swipe");
             isLeft = true;
             isright = false;
@@ -235,18 +246,17 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                   vulDhora = "";
                 } else {
                   if (mainCode[mainCurrentPos] == "_") {
-                    vulDhora =
-                        "Wring: Should be Space not ${wrongWrite[currentPos]}";
+                    vulDhora = "Should be Space not ${wrongWrite[currentPos]}";
                   } else {
                     vulDhora =
-                        "Wring: Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
+                        "Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
                   }
                 }
               } else {
-                vulDhora = "Wring: Remove extra charecter";
+                vulDhora = "Remove extra charecter";
               }
             } else {
-              vulDhora = "Wring: Unknown Barille :3";
+              vulDhora = "Unknown Barille conbination";
             }
           }
 
@@ -267,15 +277,15 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                 wrongWrite = "";
                 currentPos--;
               } else if (wrongWrite.length == 0) {
-                vulDhora = "Wrong: Nothing to remove";
+                vulDhora = "Nothing to remove";
               }
             } else if (currentPos == 0) {
               wrongWrite = "";
               currentPos = -1;
             } else if (currentPos == -1) {
-              vulDhora = "Wrong: Nothing to remove";
+              vulDhora = "Nothing to remove";
             } else {
-              vulDhora = "Wrong: Already got right no need to delete";
+              vulDhora = "Already got right no need to delete";
             }
           }
 
@@ -289,11 +299,11 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
         if (timer.isActive) {
           timer.cancel();
         }
-        vulDhora = "you won :3";
+        vulDhora = "You won";
       }
     } else {
       wrongWrite = "";
-      vulDhora = "time finished :3 sorry try again :3";
+      vulDhora = "Time finished";
     }
 
     if (mainCurrentPos == mainCode.length) {

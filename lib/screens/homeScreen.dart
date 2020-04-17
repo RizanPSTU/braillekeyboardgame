@@ -5,6 +5,7 @@ import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
+import 'package:braillekeyboardgame/widget/marquee.dart';
 import 'package:flutter/material.dart';
 
 int tootalScore = 0;
@@ -16,6 +17,20 @@ int pointInt;
 String processM = "";
 String titleM = "";
 String win = "";
+
+var globalSnapshot;
+
+int indexTrack;
+setNewLevel(int index) {
+  indexTrack = index;
+  code = globalSnapshot.data.documents[index].data["code"];
+  timeInt = int.parse(globalSnapshot.data.documents[index].data["time"]);
+  pointInt = int.parse(globalSnapshot.data.documents[index].data["point"]);
+
+  processM = globalSnapshot.data.documents[index].data["process"];
+  titleM = globalSnapshot.data.documents[index].data["title"];
+  win = globalSnapshot.data.documents[index].data["win"];
+}
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/homeScreen';
@@ -198,6 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CircularProgressIndicator(),
                   );
                 }
+                globalSnapshot = snapshot;
                 // print(snapshot.data.documents.length);
                 // print(snapshot.data.documents[0].data);
                 // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
@@ -208,16 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return MaterialButton(
                         onPressed: () {
-                          code = snapshot.data.documents[index].data["code"];
-                          timeInt = int.parse(
-                              snapshot.data.documents[index].data["time"]);
-                          pointInt = int.parse(
-                              snapshot.data.documents[index].data["point"]);
-
-                          processM =
-                              snapshot.data.documents[index].data["process"];
-                          titleM = snapshot.data.documents[index].data["title"];
-                          win = snapshot.data.documents[index].data["win"];
+                          setNewLevel(index);
                           Navigator.of(context)
                               .pushNamed(InstructionScreen.routeName);
                         },
@@ -255,26 +262,36 @@ Widget level({
 
   return Container(
     alignment: Alignment.centerLeft,
-    height: getPercentSize(8, true, context),
+    height: getPercentSize(7, true, context),
     width: getPercentSize(100, false, context),
     // color: Colors.purple,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
-          width: getPercentSize(100, false, context),
-          // height: getPercentSize(70, true, context),
-          child: Text(
-            '$level   "$learn"',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: headSceonndtext,
-              color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
+          height: getPercentSize(6, true, context),
+          // child: Text(
+          //   '$level   "$learn"',
+          //   textAlign: TextAlign.left,
+          //   style: TextStyle(
+          //     fontSize: headSceonndtext,
+          //     color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
+          //   ),
+          // ),
+          child: MarqueeWidget(
+            child: Text(
+              '$level   "$learn"',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: headSceonndtext,
+                color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
+              ),
             ),
+            direction: Axis.vertical,
+            animationDuration: Duration(microseconds: 0),
+            backDuration: Duration(microseconds: 0),
+            pauseDuration: Duration(microseconds: 0),
           ),
-        ),
-        SizedBox(
-          height: 15,
         ),
         Container(
           height: 1,

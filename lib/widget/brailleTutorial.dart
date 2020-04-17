@@ -14,7 +14,6 @@ bool isNumberActive = false;
 playsound(BuildContext context) async {
   player.play('pop.mp3');
   HapticFeedback.vibrate();
-  Navigator.of(context).pushNamed(EndTutorialScreen.routeName);
 }
 
 String cheackWhatPressedAndWhatShouldBePressed(
@@ -336,6 +335,10 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                               }
                               // valuesSee = removeListDebree(valuesSee);
                               valuesPass = removeListDebree(valuesPass);
+                              if (valuesPass.length >= 3) {
+                                Navigator.of(context)
+                                    .pushNamed(EndTutorialScreen.routeName);
+                              }
                               values.clear();
                               setState(() {});
                             },
