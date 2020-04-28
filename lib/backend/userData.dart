@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './auth.dart';
 
-Future saveScore(int totalScore) async {
+Future<int> saveScore(int totalScore) async {
   var map = new Map<String, dynamic>();
   map['totalScore'] = totalScore;
   try {
@@ -12,8 +12,10 @@ Future saveScore(int totalScore) async {
         .document(uid)
         .setData(map, merge: true)
         .whenComplete(() => print('Score Saved'));
+    return 1;
   } catch (e) {
     print(e);
+    return 0;
   }
 }
 
@@ -29,11 +31,11 @@ Future<int> getScore() async {
     return map['totalScore'];
   } catch (e) {
     print(e);
-    return -1;
+    return 0;
   }
 }
 
-Future saveLevel(int comlevel) async {
+Future<int> saveLevel(int comlevel) async {
   var map = new Map<String, dynamic>();
   map['comlevel'] = comlevel;
   try {
@@ -43,9 +45,11 @@ Future saveLevel(int comlevel) async {
         .collection('data')
         .document(uid)
         .setData(map, merge: true)
-        .whenComplete(() => print('Level Saved'));
+        .whenComplete(() => {});
+    return 1;
   } catch (e) {
     print(e);
+    return 0;
   }
 }
 

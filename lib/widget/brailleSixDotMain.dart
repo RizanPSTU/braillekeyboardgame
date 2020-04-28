@@ -39,6 +39,10 @@ playdelete() async {
   HapticFeedback.vibrate();
 }
 
+vibrate() {
+  HapticFeedback.vibrate();
+}
+
 String cheackWhatPressedAndWhatShouldBePressed(String dotCombination) {
   bool isContain = false;
   String comb;
@@ -367,6 +371,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                 Offset localDot6 =
                                     dot6.globalToLocal(details.position);
                                 if (dot1.hitTest(result, position: localDot1)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(1)) {
                                     values.add(1);
                                   }
@@ -377,6 +383,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   // print("Do1");
                                 } else if (dot2.hitTest(result,
                                     position: localDot2)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(2)) {
                                     values.add(2);
                                   }
@@ -387,6 +395,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   // print("Dot2");
                                 } else if (dot3.hitTest(result,
                                     position: localDot3)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(3)) {
                                     values.add(3);
                                   }
@@ -397,6 +407,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   // print("Dot3");
                                 } else if (dot4.hitTest(result,
                                     position: localDot4)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(4)) {
                                     values.add(4);
                                   }
@@ -407,6 +419,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   // print("Dot4");
                                 } else if (dot5.hitTest(result,
                                     position: localDot5)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(5)) {
                                     values.add(5);
                                   }
@@ -417,6 +431,8 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                   // print("Dot5");
                                 } else if (dot6.hitTest(result,
                                     position: localDot6)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(6)) {
                                     values.add(6);
                                   }

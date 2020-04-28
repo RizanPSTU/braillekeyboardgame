@@ -4,6 +4,7 @@ import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/gameEndScreen.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/widget/brailleSixDotMain.dart';
+import 'package:braillekeyboardgame/widget/dialog.dart';
 import 'package:flutter/material.dart';
 
 Timer timer;
@@ -80,17 +81,31 @@ class _PlayScreenState extends State<PlayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text("$tickCount"),
-            Container(
-                height: getPercentSize(90, true, context),
-                child: BarilleMainSixDot()),
-          ],
+    return WillPopScope(
+      onWillPop: () {
+        _showDialog() {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return BraileDialog();
+            },
+          );
+        }
+
+        _showDialog();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text("$tickCount"),
+              Container(
+                  height: getPercentSize(90, true, context),
+                  child: BarilleMainSixDot()),
+            ],
+          ),
         ),
       ),
     );

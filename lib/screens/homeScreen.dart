@@ -7,9 +7,10 @@ import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
 import 'package:braillekeyboardgame/widget/marquee.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 int tootalScore = 0;
-int comlevel = 0;
+int comlevel = -1;
 
 String code = "";
 int timeInt;
@@ -19,6 +20,32 @@ String titleM = "";
 String win = "";
 
 var globalSnapshot;
+
+Widget drawerWidget(IconData iconData, String name, double size) {
+  return Container(
+    // color: Colors.black,
+    alignment: Alignment.centerLeft,
+    height: 100,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Icon(
+          iconData,
+          size: size,
+          color: Colors.white,
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Text(
+          "$name",
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ],
+    ),
+  );
+}
 
 int indexTrack;
 setNewLevel(int index) {
@@ -45,20 +72,23 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      getScore().then((int onValue) {
+      await getScore().then((int onValue) {
         if (onValue == null) {
           tootalScore = 0;
-        } else if (onValue >= 1) {
+        } else {
           tootalScore = onValue;
         }
-      });
+      }).catchError((onError) => {print("Total get error $onError")});
 
-      getLevel().then((int onValue) {
+      await getLevel().then((int onValue) {
         if (onValue == null) {
-          comlevel = 0;
-        } else if (onValue >= 1) {
+          comlevel = -1;
+        } else {
           comlevel = onValue;
         }
+      }).catchError((onError) => {print("Comlvl get error $onError")});
+      setState(() {
+        print("Total Score and Level $tootalScore $comlevel");
       });
     });
   }
@@ -69,10 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _drawerKey,
-      // key: _scaffoldKey,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black,
-      // ),
       drawer: Drawer(
         child: Container(
           color: Colors.grey,
@@ -81,39 +107,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ListView(
                 padding: EdgeInsets.only(top: 50),
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            Icons.home,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Home",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
+                  drawerWidget(Icons.home, "Home", 30),
+                  drawerWidget(Icons.person, "Profile", 30),
+                  drawerWidget(FontAwesome.heart, "Help Us!", 25),
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: drawerWidget(Icons.star, "Global Score", 30),
                   ),
-
-                  // ListTile(
-                  //   title: Text('Item 4'),
-                  //   onTap: () {
-                  //     Navigator.pop(context);
-                  //   },
-                  // ),
+                  drawerWidget(Icons.settings, "Settings", 30),
                 ],
               ),
               Align(
@@ -225,8 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       return MaterialButton(
                         onPressed: () {
                           setNewLevel(index);
-                          Navigator.of(context)
-                              .pushNamed(InstructionScreen.routeName);
+                          Navigator.of(context).pushReplacementNamed(
+                              InstructionScreen.routeName);
                         },
                         child: level(
                           context: context,
@@ -259,6 +262,7 @@ Widget level({
   // processM = "";
   // titleM = "";
   int lvl = int.parse(level);
+  // print("lvl value $lvl $comlevel");
 
   return Container(
     alignment: Alignment.centerLeft,
@@ -284,7 +288,7 @@ Widget level({
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: headSceonndtext,
-                color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
+                color: lvl <= comlevel + 1 ? Colors.pinkAccent : Colors.grey,
               ),
             ),
             direction: Axis.vertical,
