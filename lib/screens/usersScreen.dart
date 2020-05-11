@@ -1,8 +1,10 @@
 import 'package:braillekeyboardgame/backend/auth.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/widget/CountryToggle.dart';
 import 'package:flutter/material.dart';
-
 import 'homeScreen.dart';
+
+bool isChecked = false;
 
 class UserScreen extends StatefulWidget {
   static const routeName = '/usersScreen';
@@ -14,7 +16,7 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   TextStyle textStyle = TextStyle(color: Colors.black, fontSize: 12);
-  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,18 +64,7 @@ class _UserScreenState extends State<UserScreen> {
                     "Braille Knowlege in",
                     style: textStyle,
                   ),
-                  Container(
-                    height: 20,
-                    width: 40,
-                    child: Image.asset('icons/flags/png/es.png',
-                        package: 'country_icons'),
-                  ),
-                  Container(
-                    height: 20,
-                    width: 40,
-                    child: Image.asset('icons/flags/png/ar.png',
-                        package: 'country_icons'),
-                  ),
+                  ToggleButton(),
                 ],
               ),
             ),
@@ -122,7 +113,29 @@ class _UserScreenState extends State<UserScreen> {
                   ),
                 ],
               ),
-            )
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: ProgressButton(
+            //     defaultWidget: Text(
+            //       "Save",
+            //       textAlign: TextAlign.center,
+            //       style: TextStyle(
+            //         fontSize: headThird,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //     progressWidget: CircularProgressIndicator(),
+            //     borderRadius: 20,
+            //     width: getPercentSize(80, false, context),
+            //     height: 80,
+            //     color: Colors.black,
+            //     type: ProgressButtonType.Flat,
+            //     onPressed: () async {
+            //       await saveCountryAndProfessirOrStudet(country, isChecked);
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),

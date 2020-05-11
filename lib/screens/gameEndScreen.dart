@@ -3,9 +3,11 @@ import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
-import 'package:braillekeyboardgame/widget/dialog.dart';
+import 'package:braillekeyboardgame/screens/playScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
+
+int multiply;
 
 class GameEndScreen extends StatefulWidget {
   static const routeName = '/gameEndScreen';
@@ -16,6 +18,12 @@ class GameEndScreen extends StatefulWidget {
 }
 
 class _GameEndScreenState extends State<GameEndScreen> {
+  @override
+  void initState() {
+    multiply = timeInt - tickCount;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final args =
@@ -35,7 +43,7 @@ class _GameEndScreenState extends State<GameEndScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
-                    '${args["msg"]}',
+                    '${args["msg"]} + Time Bonus ${multiply * pointInt}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,
@@ -67,9 +75,12 @@ class _GameEndScreenState extends State<GameEndScreen> {
                     type: ProgressButtonType.Flat,
                     onPressed: () async {
                       if (args["won"] == "true") {
+                        pointInt = pointInt + (pointInt * multiply);
+                        print("Point int $pointInt");
                         if (comlevel < indexTrack) {
                           comlevel = indexTrack; // Com level add
                           tootalScore = tootalScore + pointInt;
+                          print("tootalScore : $tootalScore");
                           await saveLevel(comlevel).then((value) async {
                             if (value == 1) {
                               await saveScore(tootalScore).then((onValue) {
@@ -112,8 +123,26 @@ class _GameEndScreenState extends State<GameEndScreen> {
                     color: Colors.black,
                     type: ProgressButtonType.Flat,
                     onPressed: () async {
-                      Navigator.of(context)
-                          .pushReplacementNamed(HomeScreen.routeName);
+                      if (args["won"] == "true") {
+                        pointInt = pointInt + (pointInt * multiply);
+                        print("Point int $pointInt");
+                        if (comlevel < indexTrack) {
+                          comlevel = indexTrack; // Com level add
+                          tootalScore = tootalScore + pointInt;
+                          print("tootalScore : $tootalScore");
+                          await saveLevel(comlevel).then((value) async {
+                            if (value == 1) {
+                              await saveScore(tootalScore).then((onValue) {
+                                if (onValue == 1) {
+                                  print("Both new Level and Score are saved");
+                                }
+                              });
+                            }
+                          });
+                        }
+                        Navigator.of(context)
+                            .pushReplacementNamed(HomeScreen.routeName);
+                      }
                     },
                   ),
                 ),

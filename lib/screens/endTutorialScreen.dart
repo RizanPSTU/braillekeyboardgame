@@ -1,3 +1,4 @@
+// import 'package:braillekeyboardgame/backend/auth.dart';
 import 'package:braillekeyboardgame/backend/auth.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
@@ -56,7 +57,7 @@ class _TutorialScreenState extends State<EndTutorialScreen> {
                   color: Colors.white,
                   type: ProgressButtonType.Flat,
                   onPressed: () async {
-                    await oldToNew();
+                    await newToOld();
                     Navigator.of(context).pushNamed(HomeScreen.routeName);
                   },
                 ),

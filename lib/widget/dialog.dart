@@ -1,6 +1,8 @@
 import 'dart:ui';
-
+import 'package:braillekeyboardgame/constant/constants.dart';
+import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
+import 'package:braillekeyboardgame/screens/playScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
 
@@ -9,26 +11,78 @@ class BraileDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-      child: Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          backgroundColor: Color(0xff121212),
-          child: ProgressButton(
-            borderRadius: 40.9,
-            animate: true,
-            color: Color(0xffB70000),
-            defaultWidget: const Text(
-              'Exit Game?',
-              style: TextStyle(color: Colors.black),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Text(
+                'Are you sure you want to exit the game?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: headThird,
+                  color: thirdHeadColor,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
             ),
-            progressWidget: const CircularProgressIndicator(),
-            width: 60,
-            onPressed: () async {
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-            },
-          )),
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: ProgressButton(
+                defaultWidget: Text(
+                  'Yes. Go Home!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: headThird,
+                    color: Colors.black,
+                    //fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                progressWidget: CircularProgressIndicator(),
+                borderRadius: 20,
+                width: getPercentSize(80, false, context),
+                height: 80,
+                color: Colors.white,
+                type: ProgressButtonType.Flat,
+                onPressed: () async {
+                  Navigator.pop(context);
+                  Navigator.of(context)
+                      .pushReplacementNamed(HomeScreen.routeName);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: ProgressButton(
+                defaultWidget: Text(
+                  "Keep playing",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: headThird,
+                    color: Colors.white,
+                  ),
+                ),
+                progressWidget: CircularProgressIndicator(),
+                borderRadius: 20,
+                width: getPercentSize(80, false, context),
+                height: 80,
+                color: Colors.black,
+                type: ProgressButtonType.Flat,
+                onPressed: () async {
+                  isPaused = false;
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

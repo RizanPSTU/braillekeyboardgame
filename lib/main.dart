@@ -1,12 +1,15 @@
 import 'package:braillekeyboardgame/screens/endTutorialScreen.dart';
 import 'package:braillekeyboardgame/screens/gameEndScreen.dart';
+import 'package:braillekeyboardgame/screens/globalScore.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreenFourth.dart';
 import 'package:braillekeyboardgame/screens/loginScreenSecond.dart';
 import 'package:braillekeyboardgame/screens/loginScreenThird.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
+import 'package:braillekeyboardgame/screens/morelevel.dart';
 import 'package:braillekeyboardgame/screens/playScreen.dart';
+import 'package:braillekeyboardgame/screens/settingsScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
 import 'package:braillekeyboardgame/screens/tutorialScreen.dart';
 import 'package:flutter/material.dart';
@@ -25,17 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // Define the default brightness and colors.
-        // primaryColor: Color(0xff292929),
-        // brightness: Brightness.dark,
-        // accentColor: commonProGreenKhalka,
         scaffoldBackgroundColor: Colors.black54,
         hintColor: Colors.white,
-        textTheme: TextTheme(
-          headline: TextStyle(color: Colors.white),
-          title: TextStyle(color: Colors.white),
-          body1: TextStyle(color: Colors.white),
-        ),
+        textTheme: TextTheme(),
       ),
       debugShowCheckedModeBanner: false,
       title: 'BrailleGame',
@@ -52,6 +47,9 @@ class MyApp extends StatelessWidget {
         GameEndScreen.routeName: (context) => GameEndScreen(),
         PlayScreen.routeName: (context) => PlayScreen(),
         UserScreen.routeName: (context) => UserScreen(),
+        SettingsScreen.routeName: (context) => SettingsScreen(),
+        GlobalScore.routeName: (context) => GlobalScore(),
+        MoreLevel.routeName: (context) => MoreLevel(),
         // '/': (context) => LoginScreenSecond(),
         // LoginScreenSecond.routeName: (context) => LoginScreenSecond(),
         // '/': (context) => HomeScreen(),

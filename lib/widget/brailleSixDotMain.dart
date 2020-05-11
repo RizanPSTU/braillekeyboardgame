@@ -3,6 +3,7 @@ import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/loginScreen.dart';
 import 'package:braillekeyboardgame/screens/playScreen.dart';
+import 'package:braillekeyboardgame/screens/settingsScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -25,17 +26,26 @@ int currentPos = -1;
 int mainCurrentPos = 0;
 
 playsound() async {
-  player.play('pop.mp3');
+  if (soundAndEffect) {
+    player.play('pop.mp3');
+  }
+
   HapticFeedback.vibrate();
 }
 
 playspace() async {
-  player.play('delete.m4a');
+  if (soundAndEffect) {
+    player.play('delete.m4a');
+  }
+
   HapticFeedback.vibrate();
 }
 
 playdelete() async {
-  player.play('space.mp3');
+  if (soundAndEffect) {
+    player.play('space.mp3');
+  }
+
   HapticFeedback.vibrate();
 }
 

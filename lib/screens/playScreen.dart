@@ -11,6 +11,7 @@ Timer timer;
 int tickCount = 0;
 bool isTimeFinished = false;
 bool isWon = false;
+bool isPaused;
 
 String wonText = "";
 int mainPoint = 0;
@@ -26,11 +27,13 @@ class PlayScreen extends StatefulWidget {
 class _PlayScreenState extends State<PlayScreen> {
   void startTimer() {
     timer = new Timer.periodic(new Duration(seconds: 1), (time) {
-      setState(() {
-        tickCount = tickCount + 1;
-      });
+      if (!isPaused) {
+        setState(() {
+          tickCount = tickCount + 1;
+        });
+      }
+
       if (isWon) {
-        // print("won hoise");
         Navigator.of(context).pushReplacementNamed(
           GameEndScreen.routeName,
           arguments: {
@@ -66,6 +69,7 @@ class _PlayScreenState extends State<PlayScreen> {
     super.initState();
     mainPoint = pointInt;
     wonText = win;
+    isPaused = false;
 
     if (timer != null) {
       if (timer.isActive) {
@@ -83,6 +87,7 @@ class _PlayScreenState extends State<PlayScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
+        isPaused = true;
         _showDialog() {
           showDialog(
             context: context,

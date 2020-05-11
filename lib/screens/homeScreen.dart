@@ -3,11 +3,15 @@ import 'package:braillekeyboardgame/backend/getData.dart';
 import 'package:braillekeyboardgame/backend/userData.dart';
 import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
+import 'package:braillekeyboardgame/screens/globalScore.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
+import 'package:braillekeyboardgame/screens/morelevel.dart';
+import 'package:braillekeyboardgame/screens/settingsScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
 import 'package:braillekeyboardgame/widget/marquee.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_progress_button/flutter_progress_button.dart';
 
 int tootalScore = 0;
 int comlevel = -1;
@@ -20,7 +24,7 @@ String titleM = "";
 String win = "";
 
 var globalSnapshot;
-
+GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 Widget drawerWidget(IconData iconData, String name, double size) {
   return Container(
     // color: Colors.black,
@@ -90,15 +94,17 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         print("Total Score and Level $tootalScore $comlevel");
       });
+
+      // await getCountryProfessororStudent();
     });
   }
 
   // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _drawerKey,
+      key: drawerKey,
       drawer: Drawer(
         child: Container(
           color: Colors.grey,
@@ -107,16 +113,26 @@ class _HomeScreenState extends State<HomeScreen> {
               ListView(
                 padding: EdgeInsets.only(top: 50),
                 children: <Widget>[
-                  drawerWidget(Icons.home, "Home", 30),
-                  drawerWidget(Icons.person, "Profile", 30),
+                  // drawerWidget(Icons.home, "Home", 30),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(UserScreen.routeName);
+                    },
+                    child: drawerWidget(Icons.person, "Profile", 30),
+                  ),
                   drawerWidget(FontAwesome.heart, "Help Us!", 25),
                   GestureDetector(
                     onTap: () {
-                      print("test");
+                      Navigator.of(context).pushNamed(GlobalScore.routeName);
                     },
                     child: drawerWidget(Icons.star, "Global Score", 30),
                   ),
-                  drawerWidget(Icons.settings, "Settings", 30),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(SettingsScreen.routeName);
+                    },
+                    child: drawerWidget(Icons.settings, "Settings", 30),
+                  ),
                 ],
               ),
               Align(
@@ -149,10 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         print("on tap");
                         // _scaffoldKey.currentState.openDrawer();
                         // Scaffold.of(context).openDrawer();
-                        if (_drawerKey.currentState.isDrawerOpen) {
-                          _drawerKey.currentState.openEndDrawer();
+                        if (drawerKey.currentState.isDrawerOpen) {
+                          drawerKey.currentState.openEndDrawer();
                         } else {
-                          _drawerKey.currentState.openDrawer();
+                          drawerKey.currentState.openDrawer();
                         }
                       },
                       child: Container(
@@ -223,7 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Container(
                   height: getPercentSize(50, true, context),
                   child: ListView.builder(
-                    itemCount: snapshot.data.documents.length,
+                    // itemCount: snapshot.data.documents.length,
+                    itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
                       return MaterialButton(
                         onPressed: () {
@@ -241,6 +258,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: ProgressButton(
+                  defaultWidget: Text(
+                    "Unlock and play more level!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: headThird - 5,
+                      color: Colors.white,
+                      //fontStyle: FontStyle.italic,
+                      // fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  progressWidget: CircularProgressIndicator(),
+                  borderRadius: 20,
+                  width: getPercentSize(80, false, context),
+                  height: 60,
+                  color: Colors.pinkAccent,
+                  type: ProgressButtonType.Flat,
+                  onPressed: () async {
+                    Navigator.of(context).pushNamed(MoreLevel.routeName);
+                  }),
             ),
           ],
         ),

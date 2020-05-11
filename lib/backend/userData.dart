@@ -8,8 +8,6 @@ Future<int> saveScore(int totalScore) async {
     await Firestore.instance
         .collection('/users')
         .document(uid)
-        .collection('data')
-        .document(uid)
         .setData(map, merge: true)
         .whenComplete(() => print('Score Saved'));
     return 1;
@@ -22,12 +20,7 @@ Future<int> saveScore(int totalScore) async {
 Future<int> getScore() async {
   var map;
   try {
-    map = await Firestore.instance
-        .collection('/users')
-        .document(uid)
-        .collection('data')
-        .document(uid)
-        .get();
+    map = await Firestore.instance.collection('/users').document(uid).get();
     return map['totalScore'];
   } catch (e) {
     print(e);
@@ -42,8 +35,6 @@ Future<int> saveLevel(int comlevel) async {
     await Firestore.instance
         .collection('/users')
         .document(uid)
-        .collection('data')
-        .document(uid)
         .setData(map, merge: true)
         .whenComplete(() => {});
     return 1;
@@ -56,15 +47,27 @@ Future<int> saveLevel(int comlevel) async {
 Future<int> getLevel() async {
   var map;
   try {
-    map = await Firestore.instance
-        .collection('/users')
-        .document(uid)
-        .collection('data')
-        .document(uid)
-        .get();
+    map = await Firestore.instance.collection('/users').document(uid).get();
     return map['comlevel'];
   } catch (e) {
     print(e);
     return -1;
+  }
+}
+
+Future<int> saveCountryAndProfessirOrStudet(String country, bool isPro) async {
+  var map = new Map<String, dynamic>();
+  map['country'] = country;
+  map['isPro'] = isPro;
+  try {
+    await Firestore.instance
+        .collection('/users')
+        .document(uid)
+        .setData(map, merge: true)
+        .whenComplete(() => {});
+    return 1;
+  } catch (e) {
+    print(e);
+    return 0;
   }
 }
