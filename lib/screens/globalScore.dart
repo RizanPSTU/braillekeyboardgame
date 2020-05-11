@@ -3,6 +3,8 @@ import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:flutter/material.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 
+TextStyle gtextStyle = TextStyle(color: Colors.white);
+
 class GlobalScore extends StatefulWidget {
   static const routeName = '/globalScoreScreen';
   GlobalScore({Key key}) : super(key: key);
@@ -39,12 +41,15 @@ class _GlobalScoreState extends State<GlobalScore> {
                       onTap: () {
                         print("on tap");
                         Navigator.pop(context);
-                        drawerKey.currentState.openEndDrawer();
                       },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: 50,
-                        color: Colors.white,
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(left: leftrightfix - iconMinus),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 50,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     // Container(
@@ -63,13 +68,14 @@ class _GlobalScoreState extends State<GlobalScore> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    padding: EdgeInsets.only(
+                        top: 10, bottom: 10, left: leftrightfix),
                     child: Text(
                       "Global Score",
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                 ],
@@ -85,7 +91,7 @@ class _GlobalScoreState extends State<GlobalScore> {
                       );
                     }
                     return ListView.builder(
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(leftrightfix),
                         itemCount: snapshot.data.documents.length,
                         itemBuilder: (BuildContext context, int index) {
                           // snapshot.data.documents[index].data["learn"];
@@ -126,7 +132,10 @@ Widget userTileForScore(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text("$mainIndex"),
+            Text(
+              "$mainIndex",
+              style: gtextStyle,
+            ),
             Container(
               height: 80,
               width: 80,
@@ -135,9 +144,18 @@ Widget userTileForScore(
                 backgroundImage: NetworkImage(proUrlo),
               ),
             ),
-            Text("$name"),
-            Text("Score"),
-            Text("$totalScoreO"),
+            Text(
+              "$name",
+              style: gtextStyle,
+            ),
+            Text(
+              "Score",
+              style: gtextStyle,
+            ),
+            Text(
+              "$totalScoreO",
+              style: gtextStyle,
+            ),
           ],
         ),
         Spacer(),

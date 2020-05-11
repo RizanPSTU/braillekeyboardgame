@@ -77,7 +77,8 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
                   color: Colors.white,
                   type: ProgressButtonType.Flat,
                   onPressed: () async {
-                    Navigator.of(context).pushNamed(TutorialScreen.routeName);
+                    Navigator.of(context)
+                        .pushReplacementNamed(TutorialScreen.routeName);
                   },
                 ),
               ),

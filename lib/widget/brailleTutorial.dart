@@ -16,6 +16,10 @@ playsound(BuildContext context) async {
   HapticFeedback.vibrate();
 }
 
+vibrate() {
+  HapticFeedback.vibrate();
+}
+
 String cheackWhatPressedAndWhatShouldBePressed(
   String dotCombination,
   String goal,
@@ -255,6 +259,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                 Offset localDot6 =
                                     dot6.globalToLocal(details.position);
                                 if (dot1.hitTest(result, position: localDot1)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(1)) {
                                     values.add(1);
                                   }
@@ -265,6 +271,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                   // print("Do1");
                                 } else if (dot2.hitTest(result,
                                     position: localDot2)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(2)) {
                                     values.add(2);
                                   }
@@ -275,6 +283,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                   // print("Dot2");
                                 } else if (dot3.hitTest(result,
                                     position: localDot3)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(3)) {
                                     values.add(3);
                                   }
@@ -285,6 +295,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                   // print("Dot3");
                                 } else if (dot4.hitTest(result,
                                     position: localDot4)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(4)) {
                                     values.add(4);
                                   }
@@ -295,6 +307,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                   // print("Dot4");
                                 } else if (dot5.hitTest(result,
                                     position: localDot5)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(5)) {
                                     values.add(5);
                                   }
@@ -305,6 +319,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                   // print("Dot5");
                                 } else if (dot6.hitTest(result,
                                     position: localDot6)) {
+                                  //Feel the vibration
+                                  vibrate();
                                   if (!values.contains(6)) {
                                     values.add(6);
                                   }
@@ -336,8 +352,8 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                               // valuesSee = removeListDebree(valuesSee);
                               valuesPass = removeListDebree(valuesPass);
                               if (valuesPass.length >= 3) {
-                                Navigator.of(context)
-                                    .pushNamed(EndTutorialScreen.routeName);
+                                Navigator.of(context).pushReplacementNamed(
+                                    EndTutorialScreen.routeName);
                               }
                               values.clear();
                               setState(() {});

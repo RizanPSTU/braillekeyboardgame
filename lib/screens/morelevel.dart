@@ -35,10 +35,15 @@ class _MoreLevelState extends State<MoreLevel> {
                         print("on tap");
                         Navigator.pop(context);
                       },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: 50,
-                        color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: leftrightfix - iconMinus,
+                            right: leftrightfix),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 50,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     // Container(
@@ -50,33 +55,38 @@ class _MoreLevelState extends State<MoreLevel> {
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    child: Text(
-                      "List of levels",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.only(left: leftrightfix, right: leftrightfix),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: Text(
+                        "List of levels",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Text(
-                      "Your actual score is:$tootalScore!",
-                      style: TextStyle(
-                        fontSize: 15,
-                        // fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        "Your actual score is: $tootalScore!",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             StreamBuilder(

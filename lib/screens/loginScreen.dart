@@ -139,62 +139,75 @@ class UserProfileState extends State<UserProfile> {
   }
 }
 
-class LoginButton extends StatelessWidget {
+class LoginButton extends StatefulWidget {
+  @override
+  _LoginButtonState createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
   bool isLoading = false;
+  double size = 50;
+
   oldCheckAlsoNevivate(BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
     int oldORnew = await checkNewOrOld();
     if (oldORnew == 1) {
-      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+      Navigator.of(context).pushNamed(HomeScreen.routeName);
     } else if (oldORnew == -1) {
-      Navigator.of(context).pushReplacementNamed(LoginScreenSecond.routeName);
+      Navigator.of(context).pushNamed(LoginScreenSecond.routeName);
     }
+    isLoading = false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        GestureDetector(
-          onTap: () async {
-            print("G te tip dise");
-            await googleSignIn();
-            oldCheckAlsoNevivate(context);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            height: hightAndWidthOfSocialButton,
-            width: hightAndWidthOfSocialButton,
-            decoration: BoxDecoration(),
-            child: Container(
-              height: 50,
-              width: 50,
-              child: Image.asset('assets/google.png'),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        GestureDetector(
-          onTap: () async {
-            print("F te tip dise");
-            await facebookSignIn();
-            oldCheckAlsoNevivate(context);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            height: hightAndWidthOfSocialButton,
-            width: hightAndWidthOfSocialButton,
-            decoration: BoxDecoration(),
-            child: Container(
-              height: 50,
-              width: 50,
-              child: Image.asset('assets/facebook.png'),
-            ),
-          ),
-        ),
-      ],
-    );
+    return isLoading
+        ? CircularProgressIndicator()
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
+                onTap: () async {
+                  print("G te tip dise");
+                  await googleSignIn();
+                  oldCheckAlsoNevivate(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: hightAndWidthOfSocialButton,
+                  width: hightAndWidthOfSocialButton,
+                  decoration: BoxDecoration(),
+                  child: Container(
+                    height: size,
+                    width: size,
+                    child: Image.asset('assets/google.png'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              GestureDetector(
+                onTap: () async {
+                  print("F te tip dise");
+                  await facebookSignIn();
+                  oldCheckAlsoNevivate(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: hightAndWidthOfSocialButton,
+                  width: hightAndWidthOfSocialButton,
+                  decoration: BoxDecoration(),
+                  child: Container(
+                    height: size,
+                    width: size,
+                    child: Image.asset('assets/facebook.png'),
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }

@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black54,
         hintColor: Colors.white,
         textTheme: TextTheme(),
+        primaryTextTheme : TextTheme()
+
       ),
       debugShowCheckedModeBanner: false,
       title: 'BrailleGame',

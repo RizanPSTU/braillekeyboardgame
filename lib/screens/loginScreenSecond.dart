@@ -79,7 +79,8 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                   color: Colors.white,
                   type: ProgressButtonType.Flat,
                   onPressed: () async {
-                    Navigator.of(context).pushNamed(LoginScreenThird.routeName);
+                    Navigator.of(context)
+                        .pushReplacementNamed(LoginScreenThird.routeName);
                   },
                 ),
               ),
