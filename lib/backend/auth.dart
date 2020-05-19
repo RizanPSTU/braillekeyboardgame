@@ -2,11 +2,41 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String uid = "";
 String proUrl = "";
 String name = "";
 final Firestore _db = Firestore.instance;
+
+Future<SharedPreferences> prefUPN = SharedPreferences.getInstance();
+
+Future<void> setUserDataNull() async {
+  final SharedPreferences prefs = await prefUPN;
+
+  await prefs.setString("uid", null);
+}
+
+Future<void> setUserData() async {
+  final SharedPreferences prefs = await prefUPN;
+
+  await prefs.setString("uid", uid);
+  await prefs.setString("proUrl", proUrl);
+  await prefs.setString("name", name);
+}
+
+Future<bool> getUserData() async {
+  final SharedPreferences prefs = await prefUPN;
+  String checkUID = prefs.getString("uid");
+  if (checkUID != null) {
+    uid = checkUID;
+    proUrl = prefs.getString("proUrl");
+    name = prefs.getString("name");
+    return true;
+  } else {
+    return false;
+  }
+}
 
 Future newToOld() async {
   var map = new Map<String, dynamic>();
@@ -34,14 +64,12 @@ Future<int> checkNewOrOld() async {
   }
 }
 
-
-
-setEveryValue(FirebaseUser user) {
+setEveryValue(FirebaseUser user) async {
   uid = user.uid;
   proUrl = user.photoUrl;
   name = user.displayName;
+  await setUserData();
   updateUserData(user);
-
 }
 
 //Google Sign In
@@ -51,7 +79,6 @@ GoogleSignIn _googleSignIn = new GoogleSignIn();
 FacebookLogin _facebookSignIn = new FacebookLogin();
 
 FirebaseUser user;
-
 Future<void> googleSignIn() async {
   GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
   GoogleSignInAuthentication googleSignInAuthentication =

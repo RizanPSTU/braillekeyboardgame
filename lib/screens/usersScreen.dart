@@ -63,33 +63,45 @@ class _UserScreenState extends State<UserScreen> {
                 ),
               ),
             ),
-            Container(
-              height: 100,
-              width: 100,
-              child: CircleAvatar(
-                minRadius: 35,
-                backgroundImage: NetworkImage(proUrl),
-              ),
-            ),
-            SizedBox(
-              height: sizedBoxHight,
-            ),
-            Text(
-              "$name",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Text(
-                "Your actual score is: $tootalScore!",
-                style: TextStyle(fontSize: 15, color: Colors.white
-                    // fontWeight: FontWeight.bold,
+              padding: EdgeInsets.only(left: 50),
+              child: Container(
+                width: getPercentSize(100, false, context),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      height: 100,
+                      width: 100,
+                      child: CircleAvatar(
+                        minRadius: 35,
+                        backgroundImage: NetworkImage(proUrl),
+                      ),
                     ),
+                    SizedBox(
+                      height: sizedBoxHight + 20,
+                    ),
+                    Text(
+                      "$name",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Your actual score is: $tootalScore!",
+                      style: TextStyle(fontSize: 15, color: Colors.white
+                          // fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    SizedBox(
+                      height: sizedBoxHight + 20,
+                    ),
+                  ],
+                ),
               ),
             ),
+
             Container(
               height: getPercentSize(10, true, context),
               width: getPercentSize(85, false, context),
@@ -108,7 +120,7 @@ class _UserScreenState extends State<UserScreen> {
                       style: textStyle,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 15.0),
+                      padding: EdgeInsets.only(right: 25.0),
                       child: ToggleButton(),
                     ),
                   ],
@@ -152,13 +164,16 @@ class _UserScreenState extends State<UserScreen> {
                         ],
                       ),
                     ),
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          isChecked = value;
-                        });
-                      },
+                    Padding(
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: Checkbox(
+                        value: isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = value;
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ),

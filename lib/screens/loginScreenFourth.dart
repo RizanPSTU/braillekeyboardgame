@@ -34,7 +34,8 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
               //   ),
               // ),
               Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: EdgeInsets.only(
+                    left: leftandrightpad, right: leftandrightpad),
                 child: Text(
                   'Start pressing the screen with one finger withiut lifting any, you will feel vibration in any single dot.',
                   textAlign: TextAlign.center,
@@ -46,7 +47,11 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 20),
+                padding: EdgeInsets.only(
+                    left: leftandrightpad,
+                    right: leftandrightpad,
+                    top: 50,
+                    bottom: 20),
                 child: Text(
                   'Once you have finished to feel at least 1 dot, you will pass the test.',
                   textAlign: TextAlign.center,

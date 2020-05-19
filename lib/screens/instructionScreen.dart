@@ -36,31 +36,39 @@ class _InstructionScreenState extends State<InstructionScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Container(
-                width: getPercentSize(100, false, context),
-                child: Text(
-                  '$titleM',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.pinkAccent,
-                    // fontStyle: FontStyle.italic,
+              Padding(
+                padding: EdgeInsets.only(
+                    left: leftandrightpad, right: leftandrightpad),
+                child: Container(
+                  width: getPercentSize(100, false, context),
+                  child: Text(
+                    '$titleM',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.pinkAccent,
+                      // fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: getPercentSize(10, true, context),
               ),
-              Container(
-                width: getPercentSize(100, false, context),
-                child: Text(
-                  '$processM',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.purple,
-                      // fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: leftandrightpad, right: leftandrightpad),
+                child: Container(
+                  width: getPercentSize(100, false, context),
+                  child: Text(
+                    '$processM',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.purple,
+                        // fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic),
+                  ),
                 ),
               ),
               Padding(

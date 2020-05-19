@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await loadJson();
 
-      checkNewOrOld().then((int onValue) {
-        if (onValue == 1) {
+      getUserData().then((bool islogin) {
+        if (islogin) {
           print("Home a jawar kotha");
           Navigator.of(context).pushNamed(HomeScreen.routeName);
         } else {
@@ -48,59 +48,63 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Container(
           alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "WELCOME",
-                style: TextStyle(
-                    fontSize: heatext,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "BRAILLING!",
-                style: TextStyle(
-                    fontSize: heatext,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 20),
-                child: Text(
-                  "BRAILLE ON YOUR PHONE",
+          child: Padding(
+            padding:
+                EdgeInsets.only(left: leftandrightpad, right: leftandrightpad),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "WELCOME",
                   style: TextStyle(
-                      fontSize: headSceonndtext,
-                      color: secondHeadColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "We need you to signup with any of these social accounts to start learning!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: headThird,
-                    color: thirdHeadColor,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 50, bottom: 20),
-                child: Text(
-                  "Connect using social media",
-                  style: TextStyle(
-                      fontSize: bottomText,
+                      fontSize: heatext,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-              ),
-              LoginButton(),
-              // UserProfile(),
-            ],
+                Text(
+                  "BRAILLING!",
+                  style: TextStyle(
+                      fontSize: heatext,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50, bottom: 20),
+                  child: Text(
+                    "BRAILLE ON YOUR PHONE",
+                    style: TextStyle(
+                        fontSize: headSceonndtext,
+                        color: secondHeadColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "We need you to signup with any of these social accounts to start learning!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: headThird,
+                      color: thirdHeadColor,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50, bottom: 20),
+                  child: Text(
+                    "Connect using social media",
+                    style: TextStyle(
+                        fontSize: bottomText,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                LoginButton(),
+                // UserProfile(),
+              ],
+            ),
           ),
         ),
       ),
@@ -154,11 +158,16 @@ class _LoginButtonState extends State<LoginButton> {
     });
     int oldORnew = await checkNewOrOld();
     if (oldORnew == 1) {
+      setState(() {
+        isLoading = false;
+      });
       Navigator.of(context).pushNamed(HomeScreen.routeName);
     } else if (oldORnew == -1) {
+      setState(() {
+        isLoading = false;
+      });
       Navigator.of(context).pushNamed(LoginScreenSecond.routeName);
     }
-    isLoading = false;
   }
 
   @override

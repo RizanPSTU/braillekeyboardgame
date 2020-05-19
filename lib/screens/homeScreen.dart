@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
         key: drawerKey,
         drawer: Drawer(
           child: Container(
-            color: Colors.grey,
+            color: Color(0xff3b3b3b),
             child: Stack(
               children: <Widget>[
                 ListView(
@@ -292,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // print(snapshot.data.documents[0].data);
                   // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
                   return Container(
-                    height: getPercentSize(50, true, context),
+                    height: getPercentSize(60, true, context),
                     child: ListView.builder(
                       // itemCount: snapshot.data.documents.length,
                       itemCount: 6,
@@ -360,44 +360,47 @@ Widget level({
   int lvl = int.parse(level);
   // print("lvl value $lvl $comlevel");
 
-  return Container(
-    alignment: Alignment.centerLeft,
-    height: getPercentSize(7, true, context),
-    width: getPercentSize(100, false, context),
-    // color: Colors.purple,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          height: getPercentSize(6, true, context),
-          // child: Text(
-          //   '$level   "$learn"',
-          //   textAlign: TextAlign.left,
-          //   style: TextStyle(
-          //     fontSize: headSceonndtext,
-          //     color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
-          //   ),
-          // ),
-          child: MarqueeWidget(
-            child: Text(
-              '$level   "$learn"',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: headSceonndtext,
-                color: lvl <= comlevel + 1 ? Colors.pinkAccent : Colors.grey,
+  return Padding(
+    padding: EdgeInsets.only(top: 10, bottom: 10),
+    child: Container(
+      alignment: Alignment.centerLeft,
+      height: getPercentSize(7, true, context),
+      width: getPercentSize(100, false, context),
+      // color: Colors.purple,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: getPercentSize(6, true, context),
+            // child: Text(
+            //   '$level   "$learn"',
+            //   textAlign: TextAlign.left,
+            //   style: TextStyle(
+            //     fontSize: headSceonndtext,
+            //     color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
+            //   ),
+            // ),
+            child: MarqueeWidget(
+              child: Text(
+                '$level   "$learn"',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: headSceonndtext,
+                  color: lvl <= comlevel + 1 ? Colors.pinkAccent : Colors.grey,
+                ),
               ),
+              direction: Axis.vertical,
+              animationDuration: Duration(microseconds: 0),
+              backDuration: Duration(microseconds: 0),
+              pauseDuration: Duration(microseconds: 0),
             ),
-            direction: Axis.vertical,
-            animationDuration: Duration(microseconds: 0),
-            backDuration: Duration(microseconds: 0),
-            pauseDuration: Duration(microseconds: 0),
           ),
-        ),
-        Container(
-          height: 1,
-          color: Colors.pinkAccent,
-        )
-      ],
+          Container(
+            height: 1,
+            color: Colors.pinkAccent,
+          )
+        ],
+      ),
     ),
   );
 }

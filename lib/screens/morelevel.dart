@@ -89,40 +89,42 @@ class _MoreLevelState extends State<MoreLevel> {
                 ),
               ),
             ),
-            StreamBuilder(
-              stream: getDedicationNumber(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
+            Expanded(
+              child: StreamBuilder(
+                stream: getDedicationNumber(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  globalSnapshot = snapshot;
+                  // print(snapshot.data.documents.length);
+                  // print(snapshot.data.documents[0].data);
+                  // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
+                  return Container(
+                    // height: getPercentSize(50, true, context),
+                    child: ListView.builder(
+                      itemCount: snapshot.data.documents.length,
+                      // itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return MaterialButton(
+                          onPressed: () {
+                            setNewLevel(index);
+                            Navigator.of(context).pushReplacementNamed(
+                                InstructionScreen.routeName);
+                          },
+                          child: level(
+                            context: context,
+                            learn: snapshot.data.documents[index].data["learn"],
+                            level: snapshot.data.documents[index].data["id"],
+                          ),
+                        );
+                      },
+                    ),
                   );
-                }
-                globalSnapshot = snapshot;
-                // print(snapshot.data.documents.length);
-                // print(snapshot.data.documents[0].data);
-                // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
-                return Container(
-                  height: getPercentSize(50, true, context),
-                  child: ListView.builder(
-                    itemCount: snapshot.data.documents.length,
-                    // itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      return MaterialButton(
-                        onPressed: () {
-                          setNewLevel(index);
-                          Navigator.of(context).pushReplacementNamed(
-                              InstructionScreen.routeName);
-                        },
-                        child: level(
-                          context: context,
-                          learn: snapshot.data.documents[index].data["learn"],
-                          level: snapshot.data.documents[index].data["id"],
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
+                },
+              ),
             ),
           ],
         ),

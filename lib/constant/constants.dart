@@ -9,3 +9,5 @@ double iconSize = hightAndWidthOfSocialButton - 10;
 
 Color secondHeadColor = Colors.grey;
 Color thirdHeadColor = Colors.pinkAccent;
+
+double leftandrightpad = 20;
