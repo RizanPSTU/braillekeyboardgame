@@ -105,7 +105,10 @@ class _PlayScreenState extends State<PlayScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text("$tickCount"),
+              Text(
+                "$tickCount",
+                style: TextStyle(color: Colors.white),
+              ),
               Container(
                   height: getPercentSize(90, true, context),
                   child: BarilleMainSixDot()),

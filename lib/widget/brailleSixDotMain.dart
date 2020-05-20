@@ -219,12 +219,10 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
       return Container(
         height: sizeOfDot,
         width: sizeOfDot,
-        child: Container(
-          key: key,
-          decoration: BoxDecoration(
-            color: isActive == true ? thirdHeadColor : Colors.white,
-            shape: BoxShape.circle,
-          ),
+        key: key,
+        decoration: BoxDecoration(
+          color: isActive == true ? thirdHeadColor : Colors.white,
+          shape: BoxShape.circle,
         ),
       );
     }
@@ -323,37 +321,32 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
     if (mainCurrentPos == mainCode.length) {
       isWon = true;
     }
-    return RawGestureDetector(
-      gestures: {
-        HorizontalMultiDragGestureRecognizer:
-            GestureRecognizerFactoryWithHandlers<
-                HorizontalMultiDragGestureRecognizer>(
-          () => HorizontalMultiDragGestureRecognizer(),
-          (HorizontalMultiDragGestureRecognizer instance) {
-            instance..onStart = _handleOnStart;
-          },
-        )
-      },
-      behavior: HitTestBehavior.opaque,
-      child: Scaffold(
-        body: SafeArea(
-          child: Container(
-            height: getPercentSize(100, true, context),
-            width: getPercentSize(100, false, context),
-            color: Colors.black,
-            child: Center(
-              child: isOff
-                  ? Container(
-                      height: getPercentSize(100, true, context),
-                      width: getPercentSize(100, false, context),
-                      color: Colors.black,
-                    )
-                  : Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Listener(
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          height: getPercentSize(100, true, context),
+          width: getPercentSize(100, false, context),
+          color: Colors.black,
+          child: Center(
+            child: isOff
+                ? Container(
+                    height: getPercentSize(100, true, context),
+                    width: getPercentSize(100, false, context),
+                    color: Colors.black,
+                  )
+                : Container(
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Semantics(
+                          liveRegion: true,
+                          // explicitChildNodes: true,
+                          // readOnly: true,
+
+                          child: Listener(
                             onPointerMove: (PointerEvent details) {
+                              // print("on move");
                               try {
                                 final RenderBox dot1 =
                                     _key1.currentContext.findRenderObject();
@@ -458,6 +451,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                               }
                             },
                             onPointerUp: (PointerUpEvent details) {
+                              // print("on up");
                               // print("Pointer UP local ${details.localPosition}");
                               // print("Pointer UP poistion ${details.position}");
                               booldot1 = false;
@@ -558,10 +552,10 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-            ),
+                  ),
           ),
         ),
       ),
