@@ -1,4 +1,5 @@
 import 'package:braillekeyboardgame/backend/getData.dart';
+import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
 import 'package:braillekeyboardgame/screens/instructionScreen.dart';
@@ -41,7 +42,7 @@ class _MoreLevelState extends State<MoreLevel> {
                             right: leftrightfix),
                         child: Icon(
                           Icons.arrow_back_ios,
-                          size: 50,
+                          size: iconSizeIosArrow,
                           color: Colors.white,
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ToggleButton extends StatefulWidget {
   @override
@@ -6,10 +7,28 @@ class ToggleButton extends StatefulWidget {
 }
 
 class _ToggleButtonState extends State<ToggleButton> {
-  var _value;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  var valuemain = "3";
+
+  Future<void> setCountry(String valuearg) async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.setString("country", valuearg);
+  }
+
+  Future<void> getCountry() async {
+    final SharedPreferences prefs = await _prefs;
+    setState(() {
+      valuemain = prefs.getString('country') ?? "3";
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getCountry();
+    });
   }
 
   @override
@@ -48,12 +67,13 @@ class _ToggleButtonState extends State<ToggleButton> {
             ),
           ),
         ],
-        onChanged: (value) {
+        onChanged: (value) async {
+          await setCountry(value);
           setState(() {
-            _value = value;
+            valuemain = value;
           });
         },
-        value: _value,
+        value: valuemain,
       ),
     );
   }

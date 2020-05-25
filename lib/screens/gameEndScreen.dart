@@ -140,9 +140,9 @@ class _GameEndScreenState extends State<GameEndScreen> {
                             }
                           });
                         }
-                        Navigator.of(context)
-                            .pushReplacementNamed(HomeScreen.routeName);
                       }
+                      Navigator.of(context)
+                          .pushReplacementNamed(HomeScreen.routeName);
                     },
                   ),
                 ),

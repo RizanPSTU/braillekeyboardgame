@@ -164,9 +164,10 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
 
   @override
   Widget build(BuildContext context) {
-    double sizeOfDot = 120;
-    double sizeOfDotSpace = 120;
-    double sizeOfDotHightSpace = 120;
+    double sizeOfDot = getPercentSize(20, true, context);
+    double sizeOfDotSpace = getPercentSize(20, false, context);
+    ;
+    double sizeOfDotHightSpace = getPercentSize(8, true, context);
     int rightC = 0;
     int leftC = 0;
 
@@ -248,7 +249,9 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
       if (!isWon) {
         if (isPressed) {
           if (charPress != "D" && charPress != "N") {
+            // N = number mode and D = delete
             if (charPress != "U") {
+              // U = unknown
               wrongWrite = wrongWrite + charPress;
               currentPos++;
               if (currentPos == mainCurrentPos) {
@@ -335,9 +338,10 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                     color: Colors.black,
                   )
                 : Container(
-                    color: Colors.white,
+                    // color: Colors.white,
+                    height: getPercentSize(100, true, context),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Semantics(
                           liveRegion: true,
@@ -476,11 +480,11 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                               // height: getPercentSize(100, true, context),
                               // width: -getPercentSize(100, false, context),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                    alignment: Alignment.center,
+                                    alignment: Alignment.topCenter,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -528,25 +532,21 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: sizeOfDotHightSpace - 60,
+                                    height: 10,
                                   ),
-                                  Container(
-                                    child: Text(
-                                      "$wrongWrite",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Text(
+                                    "$wrongWrite",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Container(
-                                    child: Text(
-                                      "$vulDhora",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Text(
+                                    "$vulDhora",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),

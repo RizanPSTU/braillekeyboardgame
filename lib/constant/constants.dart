@@ -11,3 +11,5 @@ Color secondHeadColor = Colors.grey;
 Color thirdHeadColor = Colors.pinkAccent;
 
 double leftandrightpad = 20;
+
+double iconSizeIosArrow = 45;

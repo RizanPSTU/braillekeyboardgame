@@ -1,12 +1,16 @@
 import 'package:braillekeyboardgame/backend/auth.dart';
+import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/widget/CountryToggle.dart';
 import 'package:flutter/material.dart';
 import 'homeScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 bool isChecked = false;
 double sizedBoxHight = 20;
 double whiteBoxLeftPAdding = 10;
+
+double userdetails2hiteBox = 20;
 
 class UserScreen extends StatefulWidget {
   static const routeName = '/usersScreen';
@@ -18,6 +22,27 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   TextStyle textStyle = TextStyle(color: Colors.black, fontSize: 12);
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  Future<void> setCheck(bool isCheckedArg) async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.setBool("isCheckedpro", isCheckedArg);
+  }
+
+  Future<void> getCheck() async {
+    final SharedPreferences prefs = await _prefs;
+    setState(() {
+      isChecked = prefs.getBool('isCheckedpro') ?? false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getCheck();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +50,7 @@ class _UserScreenState extends State<UserScreen> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               // color: Colors.red,
@@ -33,7 +58,7 @@ class _UserScreenState extends State<UserScreen> {
               child: Padding(
                 padding: EdgeInsets.only(
                   top: getPercentSize(3, true, context),
-                  bottom: getPercentSize(3, true, context),
+                  bottom: getPercentSize(9, true, context),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +74,7 @@ class _UserScreenState extends State<UserScreen> {
                             right: leftrightfix),
                         child: Icon(
                           Icons.arrow_back_ios,
-                          size: 50,
+                          size: iconSizeIosArrow,
                           color: Colors.white,
                         ),
                       ),
@@ -64,7 +89,7 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 50),
+              padding: EdgeInsets.only(left: userdetails2hiteBox),
               child: Container(
                 width: getPercentSize(100, false, context),
                 child: Column(
@@ -102,80 +127,87 @@ class _UserScreenState extends State<UserScreen> {
               ),
             ),
 
-            Container(
-              height: getPercentSize(10, true, context),
-              width: getPercentSize(85, false, context),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: whiteBoxLeftPAdding),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Braille Knowlege in",
-                      style: textStyle,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 25.0),
-                      child: ToggleButton(),
-                    ),
-                  ],
+            Padding(
+              padding: EdgeInsets.only(left: userdetails2hiteBox - 5),
+              child: Container(
+                height: getPercentSize(10, true, context),
+                width: getPercentSize(85, false, context),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left: whiteBoxLeftPAdding),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Braille Knowlege in",
+                        style: textStyle,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 25.0),
+                        child: ToggleButton(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: getPercentSize(10, true, context),
-              width: getPercentSize(85, false, context),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              alignment: Alignment.center,
-              child: Padding(
-                padding: EdgeInsets.only(left: whiteBoxLeftPAdding),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      // color: Colors.red,
-                      width: getPercentSize(65, false, context),
-                      height: getPercentSize(9, true, context),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Are you a student or proffesor ?",
-                            style: textStyle,
-                          ),
-                          Text(
-                            "If you click yes, you will ake to be verified and have promotional codes in future?",
-                            style: TextStyle(fontSize: 8, color: Colors.grey),
-                          ),
-                        ],
+            Padding(
+              padding: EdgeInsets.only(left: userdetails2hiteBox - 5),
+              child: Container(
+                height: getPercentSize(10, true, context),
+                width: getPercentSize(85, false, context),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.only(left: whiteBoxLeftPAdding),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        // color: Colors.red,
+                        width: getPercentSize(65, false, context),
+                        height: getPercentSize(9, true, context),
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Are you a student or proffesor ?",
+                              style: textStyle,
+                            ),
+                            Text(
+                              "If you click yes, you will ake to be verified and have promotional codes in future?",
+                              style: TextStyle(fontSize: 8, color: Colors.grey),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20.0),
-                      child: Checkbox(
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value;
-                          });
-                        },
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0),
+                        child: Checkbox(
+                          value: isChecked,
+                          onChanged: (value) async {
+                            await setCheck(value);
+                            setState(() {
+                              isChecked = value;
+                            });
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

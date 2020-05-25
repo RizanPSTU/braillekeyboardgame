@@ -8,7 +8,6 @@ import 'package:braillekeyboardgame/screens/instructionScreen.dart';
 import 'package:braillekeyboardgame/screens/morelevel.dart';
 import 'package:braillekeyboardgame/screens/settingsScreen.dart';
 import 'package:braillekeyboardgame/screens/usersScreen.dart';
-import 'package:braillekeyboardgame/widget/marquee.dart';
 import 'package:braillekeyboardgame/widget/exitdialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -27,15 +26,16 @@ String win = "";
 
 double leftrightfix = 20;
 double top = 20;
-double iconMinus = 5;
+double iconMinus = 0;
 
 var globalSnapshot;
 GlobalKey<ScaffoldState> drawerKey = GlobalKey();
-Widget drawerWidget(IconData iconData, String name, double size) {
+Widget drawerWidget(
+    IconData iconData, String name, double size, BuildContext context) {
   return Container(
     // color: Colors.black,
     alignment: Alignment.centerLeft,
-    height: 100,
+    height: getPercentSize(13, true, context),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -44,9 +44,13 @@ Widget drawerWidget(IconData iconData, String name, double size) {
           size: size,
           color: Colors.white,
         ),
-        SizedBox(
-          width: 20,
-        ),
+        size == 25
+            ? SizedBox(
+                width: 25,
+              )
+            : SizedBox(
+                width: 20,
+              ),
         Text(
           "$name",
           style: TextStyle(
@@ -130,20 +134,28 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Stack(
               children: <Widget>[
                 ListView(
-                  padding: EdgeInsets.only(top: 50, left: leftrightfix),
+                  padding: EdgeInsets.only(top: 50, left: 0),
                   children: <Widget>[
                     // drawerWidget(Icons.home, "Home", 30),
-                    GestureDetector(
-                      onTap: () {
+                    MaterialButton(
+                      onPressed: () {
+                        if (drawerKey.currentState.isDrawerOpen) {
+                          drawerKey.currentState.openEndDrawer();
+                        }
+                      },
+                      child: drawerWidget(Icons.home, "Home", 30, context),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
                         if (drawerKey.currentState.isDrawerOpen) {
                           drawerKey.currentState.openEndDrawer();
                         }
                         Navigator.of(context).pushNamed(UserScreen.routeName);
                       },
-                      child: drawerWidget(Icons.person, "Profile", 30),
+                      child: drawerWidget(Icons.person, "Profile", 30, context),
                     ),
-                    GestureDetector(
-                      onTap: () async {
+                    MaterialButton(
+                      onPressed: () async {
                         if (drawerKey.currentState.isDrawerOpen) {
                           drawerKey.currentState.openEndDrawer();
                         }
@@ -156,188 +168,208 @@ class _HomeScreenState extends State<HomeScreen> {
                           throw 'Could not launch $url';
                         }
                       },
-                      child: drawerWidget(FontAwesome.heart, "Help Us!", 25),
+                      child: drawerWidget(
+                          FontAwesome.heart, "Help Us!", 25, context),
                     ),
-                    GestureDetector(
-                      onTap: () {
+                    MaterialButton(
+                      onPressed: () {
                         if (drawerKey.currentState.isDrawerOpen) {
                           drawerKey.currentState.openEndDrawer();
                         }
                         Navigator.of(context).pushNamed(GlobalScore.routeName);
                       },
-                      child: drawerWidget(Icons.star, "Global Score", 30),
+                      child:
+                          drawerWidget(Icons.star, "Global Score", 30, context),
                     ),
-                    GestureDetector(
-                      onTap: () {
+                    MaterialButton(
+                      onPressed: () {
                         if (drawerKey.currentState.isDrawerOpen) {
                           drawerKey.currentState.openEndDrawer();
                         }
                         Navigator.of(context)
                             .pushNamed(SettingsScreen.routeName);
                       },
-                      child: drawerWidget(Icons.settings, "Settings", 30),
+                      child:
+                          drawerWidget(Icons.settings, "Settings", 30, context),
                     ),
                   ],
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text('Made with ♥'),
+                    padding: EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Made with  ',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        Icon(
+                          FontAwesome.heart,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         ),
-        body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding:
-                    EdgeInsets.only(left: leftrightfix, right: leftrightfix),
-                child: Container(
-                  // color: Colors.red,
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: getPercentSize(3, true, context),
-                      bottom: getPercentSize(3, true, context),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 0, right: leftrightfix),
+                  child: Container(
+                    // color: Colors.red,
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: getPercentSize(3, true, context),
+                        bottom: getPercentSize(3, true, context),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          MaterialButton(
+                            onPressed: () {
+                              print("on tap");
+                              // _scaffoldKey.currentState.openDrawer();
+                              // Scaffold.of(context).openDrawer();
+                              if (drawerKey.currentState.isDrawerOpen) {
+                                drawerKey.currentState.openEndDrawer();
+                              } else {
+                                drawerKey.currentState.openDrawer();
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              child: Image.asset('assets/bicon.png'),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(UserScreen.routeName);
+                            },
+                            child: CircleAvatar(
+                              minRadius: 35,
+                              backgroundImage: NetworkImage(proUrl),
+                            ),
+                          ),
+                          // Container(
+                          //   height: 50,
+                          //   width: 50,
+                          //   child: Image.asset('assets/bicon.png'),
+                          // ),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: leftrightfix, right: leftrightfix),
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            print("on tap");
-                            // _scaffoldKey.currentState.openDrawer();
-                            // Scaffold.of(context).openDrawer();
-                            if (drawerKey.currentState.isDrawerOpen) {
-                              drawerKey.currentState.openEndDrawer();
-                            } else {
-                              drawerKey.currentState.openDrawer();
-                            }
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            child: Image.asset('assets/bicon.png'),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Text(
+                            "Learning Braille!",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(UserScreen.routeName);
-                          },
-                          child: CircleAvatar(
-                            minRadius: 35,
-                            backgroundImage: NetworkImage(proUrl),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Your actual score is: $tootalScore!",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              // fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        // Container(
-                        //   height: 50,
-                        //   width: 50,
-                        //   child: Image.asset('assets/bicon.png'),
-                        // ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(left: leftrightfix, right: leftrightfix),
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text(
-                          "Learning Braille!",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+                StreamBuilder(
+                  stream: getDedicationNumber(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    globalSnapshot = snapshot;
+                    // print(snapshot.data.documents.length);
+                    // print(snapshot.data.documents[0].data);
+                    // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
+                    return Container(
+                      height: getPercentSize(60, true, context),
+                      child: ListView.builder(
+                        // itemCount: snapshot.data.documents.length,
+                        itemCount: 6,
+                        itemBuilder: (BuildContext context, int index) {
+                          return MaterialButton(
+                            onPressed: () {
+                              setNewLevel(index);
+                              Navigator.of(context).pushReplacementNamed(
+                                  InstructionScreen.routeName);
+                            },
+                            child: level(
+                              context: context,
+                              learn:
+                                  snapshot.data.documents[index].data["learn"],
+                              level: snapshot.data.documents[index].data["id"],
+                            ),
+                          );
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          "Your actual score is: $tootalScore!",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              StreamBuilder(
-                stream: getDedicationNumber(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
                     );
-                  }
-                  globalSnapshot = snapshot;
-                  // print(snapshot.data.documents.length);
-                  // print(snapshot.data.documents[0].data);
-                  // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
-                  return Container(
-                    height: getPercentSize(60, true, context),
-                    child: ListView.builder(
-                      // itemCount: snapshot.data.documents.length,
-                      itemCount: 6,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MaterialButton(
-                          onPressed: () {
-                            setNewLevel(index);
-                            Navigator.of(context).pushReplacementNamed(
-                                InstructionScreen.routeName);
-                          },
-                          child: level(
-                            context: context,
-                            learn: snapshot.data.documents[index].data["learn"],
-                            level: snapshot.data.documents[index].data["id"],
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: ProgressButton(
-                    defaultWidget: Text(
-                      "Unlock and play more level!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: headThird - 5,
-                        color: Colors.white,
-                        //fontStyle: FontStyle.italic,
-                        // fontWeight: FontWeight.bold,
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ProgressButton(
+                      defaultWidget: Text(
+                        "Unlock and play more level!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: headThird - 5,
+                          color: Colors.white,
+                          //fontStyle: FontStyle.italic,
+                          // fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    progressWidget: CircularProgressIndicator(),
-                    borderRadius: 20,
-                    width: getPercentSize(80, false, context),
-                    height: 60,
-                    color: Colors.pinkAccent,
-                    type: ProgressButtonType.Flat,
-                    onPressed: () async {
-                      Navigator.of(context).pushNamed(MoreLevel.routeName);
-                    }),
-              ),
-            ],
+                      progressWidget: CircularProgressIndicator(),
+                      borderRadius: 20,
+                      width: getPercentSize(80, false, context),
+                      height: 60,
+                      color: Colors.pinkAccent,
+                      type: ProgressButtonType.Flat,
+                      onPressed: () async {
+                        Navigator.of(context).pushNamed(MoreLevel.routeName);
+                      }),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -364,14 +396,14 @@ Widget level({
     padding: EdgeInsets.only(top: 10, bottom: 10),
     child: Container(
       alignment: Alignment.centerLeft,
-      height: getPercentSize(7, true, context),
+      // height: getPercentSize(7, true, context),
       width: getPercentSize(100, false, context),
       // color: Colors.purple,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: getPercentSize(6, true, context),
+            // height: getPercentSize(6, true, context),
             // child: Text(
             //   '$level   "$learn"',
             //   textAlign: TextAlign.left,
@@ -380,7 +412,7 @@ Widget level({
             //     color: lvl <= comlevel ? Colors.pinkAccent : Colors.grey,
             //   ),
             // ),
-            child: MarqueeWidget(
+            child: Container(
               child: Text(
                 '$level   "$learn"',
                 textAlign: TextAlign.left,
@@ -389,10 +421,6 @@ Widget level({
                   color: lvl <= comlevel + 1 ? Colors.pinkAccent : Colors.grey,
                 ),
               ),
-              direction: Axis.vertical,
-              animationDuration: Duration(microseconds: 0),
-              backDuration: Duration(microseconds: 0),
-              pauseDuration: Duration(microseconds: 0),
             ),
           ),
           Container(

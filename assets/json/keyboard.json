@@ -134,7 +134,11 @@
 
   {
     "Combination": ["3"],
-    "Char": "."
+    "Char": "D"
+  },
+  {
+    "Combination": ["6"],
+    "Char": "_"
   },
   {
     "Combination": ["26"],

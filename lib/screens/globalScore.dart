@@ -1,4 +1,5 @@
 import 'package:braillekeyboardgame/backend/getData.dart';
+import 'package:braillekeyboardgame/constant/constants.dart';
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:flutter/material.dart';
 import 'package:braillekeyboardgame/screens/homeScreen.dart';
@@ -47,7 +48,7 @@ class _GlobalScoreState extends State<GlobalScore> {
                             EdgeInsets.only(left: leftrightfix - iconMinus),
                         child: Icon(
                           Icons.arrow_back_ios,
-                          size: 50,
+                          size: iconSizeIosArrow,
                           color: Colors.white,
                         ),
                       ),
@@ -130,11 +131,14 @@ Widget userTileForScore(
       children: <Widget>[
         Spacer(),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               "$mainIndex",
               style: gtextStyle,
+            ),
+            SizedBox(
+              width: 10,
             ),
             Container(
               height: 80,
@@ -144,14 +148,18 @@ Widget userTileForScore(
                 backgroundImage: NetworkImage(proUrlo),
               ),
             ),
+            SizedBox(
+              width: 10,
+            ),
             Text(
               "$name",
               style: gtextStyle,
             ),
-            Text(
-              "Score",
-              style: gtextStyle,
-            ),
+            // Text(
+            //   "Score",
+            //   style: gtextStyle,
+            // ),
+            Spacer(),
             Text(
               "$totalScoreO",
               style: gtextStyle,
