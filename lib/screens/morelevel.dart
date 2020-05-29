@@ -67,7 +67,7 @@ class _MoreLevelState extends State<MoreLevel> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
-                        "List of levels",
+                        "Lista de niveles",
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -77,13 +77,25 @@ class _MoreLevelState extends State<MoreLevel> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        "Your actual score is: $tootalScore!",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          // fontWeight: FontWeight.bold,
-                        ),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "Puntaje actual: ",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "$tootalScore!",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -99,7 +111,13 @@ class _MoreLevelState extends State<MoreLevel> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  globalSnapshot = snapshot;
+                  globalSnapshot = snapshot.data.documents.toList();
+
+                  globalSnapshot.sort((a, b) {
+                    int adate = int.parse(a.data['id']);
+                    int bdate = int.parse(b.data['id']);
+                    return adate.compareTo(bdate);
+                  });
                   // print(snapshot.data.documents.length);
                   // print(snapshot.data.documents[0].data);
                   // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
@@ -117,8 +135,8 @@ class _MoreLevelState extends State<MoreLevel> {
                           },
                           child: level(
                             context: context,
-                            learn: snapshot.data.documents[index].data["learn"],
-                            level: snapshot.data.documents[index].data["id"],
+                            learn: globalSnapshot[index].data["learn"],
+                            level: globalSnapshot[index].data["id"],
                           ),
                         );
                       },

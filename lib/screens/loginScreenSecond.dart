@@ -23,15 +23,19 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Container(
-                height: 250,
-                width: 250,
-                child: Image.asset('assets/logo.png'),
+              Semantics(
+                button: true,
+                label: "Braille Logo",
+                child: Container(
+                  height: 250,
+                  width: 250,
+                  child: Image.asset('assets/logo.png'),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 50, bottom: 20),
                 child: Text(
-                  "START LEARNING FOR FREE",
+                  "¡Aprendé braille gratis!",
                   style: TextStyle(
                       fontSize: headSceonndtext,
                       color: secondHeadColor,
@@ -41,7 +45,7 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Text(
-                  '"Braille is knowledge, and knowledge is power." -',
+                  '“El braille es conocimiento y el conocimiento es poder”. — ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -63,7 +67,7 @@ class _LoginScreenSecondState extends State<LoginScreenSecond> {
                 padding: const EdgeInsets.only(top: 50),
                 child: ProgressButton(
                   defaultWidget: Text(
-                    'Start learning now !',
+                    'Click para empezar.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

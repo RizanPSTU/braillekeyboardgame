@@ -56,23 +56,23 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "WELCOME",
+                  "¡Brailling te da la bienvenida!",
                   style: TextStyle(
                       fontSize: heatext,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  "BRAILLING!",
-                  style: TextStyle(
-                      fontSize: heatext,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   "BRAILLING!",
+                //   style: TextStyle(
+                //       fontSize: heatext,
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.bold),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50, bottom: 20),
                   child: Text(
-                    "BRAILLE ON YOUR PHONE",
+                    "Braille en tu smartphone",
                     style: TextStyle(
                         fontSize: headSceonndtext,
                         color: secondHeadColor,
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "We need you to signup with any of these social accounts to start learning!",
+                    "Registrate o iniciá sesión con tus redes sociales para empezar a aprender",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,
@@ -91,16 +91,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, bottom: 20),
-                  child: Text(
-                    "Connect using social media",
-                    style: TextStyle(
-                        fontSize: bottomText,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 50, bottom: 20),
+                //   child: Text(
+                //     "Connect using social media",
+                //     style: TextStyle(
+                //         fontSize: bottomText,
+                //         color: Colors.white,
+                //         fontWeight: FontWeight.bold),
+                //   ),
+                // ),
                 LoginButton(),
                 // UserProfile(),
               ],
@@ -177,42 +177,50 @@ class _LoginButtonState extends State<LoginButton> {
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              GestureDetector(
-                onTap: () async {
-                  print("G te tip dise");
-                  await googleSignIn();
-                  oldCheckAlsoNevivate(context);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: hightAndWidthOfSocialButton,
-                  width: hightAndWidthOfSocialButton,
-                  decoration: BoxDecoration(),
+              Semantics(
+                button: true,
+                label: "Google sign in",
+                child: GestureDetector(
+                  onTap: () async {
+                    print("G te tip dise");
+                    await googleSignIn();
+                    oldCheckAlsoNevivate(context);
+                  },
                   child: Container(
-                    height: size,
-                    width: size,
-                    child: Image.asset('assets/google.png'),
+                    alignment: Alignment.center,
+                    height: hightAndWidthOfSocialButton,
+                    width: hightAndWidthOfSocialButton,
+                    decoration: BoxDecoration(),
+                    child: Container(
+                      height: size,
+                      width: size,
+                      child: Image.asset('assets/google.png'),
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 width: 20,
               ),
-              GestureDetector(
-                onTap: () async {
-                  print("F te tip dise");
-                  await facebookSignIn();
-                  oldCheckAlsoNevivate(context);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  height: hightAndWidthOfSocialButton,
-                  width: hightAndWidthOfSocialButton,
-                  decoration: BoxDecoration(),
+              Semantics(
+                button: true,
+                label: "Facebook sign in",
+                child: GestureDetector(
+                  onTap: () async {
+                    print("F te tip dise");
+                    await facebookSignIn();
+                    oldCheckAlsoNevivate(context);
+                  },
                   child: Container(
-                    height: size,
-                    width: size,
-                    child: Image.asset('assets/facebook.png'),
+                    alignment: Alignment.center,
+                    height: hightAndWidthOfSocialButton,
+                    width: hightAndWidthOfSocialButton,
+                    decoration: BoxDecoration(),
+                    child: Container(
+                      height: size,
+                      width: size,
+                      child: Image.asset('assets/facebook.png'),
+                    ),
                   ),
                 ),
               ),

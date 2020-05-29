@@ -144,12 +144,15 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
   bool isright = false;
   bool isLeft = false;
 
+  bool inDeley = false;
+
   @override
   void initState() {
     super.initState();
     isNumberActive = false;
     isWon = false;
     isPressed = false;
+    inDeley = false;
 
     mainCode = code;
     // mainPoint = pointInt;
@@ -247,67 +250,70 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
     }
     if (!isTimeFinished) {
       if (!isWon) {
-        if (isPressed) {
-          if (charPress != "D" && charPress != "N") {
-            // N = number mode and D = delete
-            if (charPress != "U") {
-              // U = unknown
-              wrongWrite = wrongWrite + charPress;
-              currentPos++;
-              if (currentPos == mainCurrentPos) {
-                if (mainCode[mainCurrentPos] == wrongWrite[currentPos]) {
-                  mainCurrentPos++;
-                  // currentPos++;
-                  vulDhora = "";
-                } else {
-                  if (mainCode[mainCurrentPos] == "_") {
-                    vulDhora = "Should be Space not ${wrongWrite[currentPos]}";
+        if (!inDeley) {
+          if (isPressed) {
+            if (charPress != "D" && charPress != "N") {
+              // N = number mode and D = delete
+              if (charPress != "U") {
+                // U = unknown
+                wrongWrite = wrongWrite + charPress;
+                currentPos++;
+                if (currentPos == mainCurrentPos) {
+                  if (mainCode[mainCurrentPos] == wrongWrite[currentPos]) {
+                    mainCurrentPos++;
+                    // currentPos++;
+                    vulDhora = "";
                   } else {
-                    vulDhora =
-                        "Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
+                    if (mainCode[mainCurrentPos] == "_") {
+                      vulDhora =
+                          "Should be Space not ${wrongWrite[currentPos]}";
+                    } else {
+                      vulDhora =
+                          "Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
+                    }
                   }
+                } else {
+                  vulDhora = "Remove extra charecter";
                 }
               } else {
-                vulDhora = "Remove extra charecter";
+                vulDhora = "Unknown Barille conbination";
               }
-            } else {
-              vulDhora = "Unknown Barille conbination";
             }
-          }
 
-          if (charPress == "N") {
-            if (isNumberActive) {
-              vulDhora = "Number mode activated";
-            } else {
-              vulDhora = "Number mode deactivated";
+            if (charPress == "N") {
+              if (isNumberActive) {
+                vulDhora = "Number mode activated";
+              } else {
+                vulDhora = "Number mode deactivated";
+              }
             }
-          }
 
-          if (charPress == "D") {
-            if (currentPos >= mainCurrentPos) {
-              if (wrongWrite.length > 1) {
-                wrongWrite = wrongWrite.substring(0, wrongWrite.length - 1);
-                currentPos--;
-              } else if (wrongWrite.length == 1) {
+            if (charPress == "D") {
+              if (currentPos >= mainCurrentPos) {
+                if (wrongWrite.length > 1) {
+                  wrongWrite = wrongWrite.substring(0, wrongWrite.length - 1);
+                  currentPos--;
+                } else if (wrongWrite.length == 1) {
+                  wrongWrite = "";
+                  currentPos--;
+                } else if (wrongWrite.length == 0) {
+                  vulDhora = "Nothing to remove";
+                }
+              } else if (currentPos == 0) {
                 wrongWrite = "";
-                currentPos--;
-              } else if (wrongWrite.length == 0) {
+                currentPos = -1;
+              } else if (currentPos == -1) {
                 vulDhora = "Nothing to remove";
+              } else {
+                vulDhora = "Already got right no need to delete";
               }
-            } else if (currentPos == 0) {
-              wrongWrite = "";
-              currentPos = -1;
-            } else if (currentPos == -1) {
-              vulDhora = "Nothing to remove";
-            } else {
-              vulDhora = "Already got right no need to delete";
             }
-          }
 
-          isPressed = false;
-          charPress = "";
-          // print("Write ===>$write");
-          // print("is pr ===>$currentPos");
+            isPressed = false;
+            charPress = "";
+            // print("Write ===>$write");
+            // print("is pr ===>$currentPos");
+          }
         }
       } else {
         wrongWrite = "";
@@ -458,21 +464,31 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                               // print("on up");
                               // print("Pointer UP local ${details.localPosition}");
                               // print("Pointer UP poistion ${details.position}");
-                              booldot1 = false;
-                              booldot2 = false;
-                              booldot3 = false;
-                              booldot4 = false;
-                              booldot5 = false;
-                              booldot6 = false;
-                              // valuesSee = values.toString();
                               valuesPass = values.toString();
-                              if (isOff) {
-                                valuesPass = "";
-                              }
-                              // valuesSee = removeListDebree(valuesSee);
                               valuesPass = removeListDebree(valuesPass);
-                              values.clear();
-                              setState(() {});
+                              // setState(() {});
+                              if (inDeley == false) {
+                                inDeley = true;
+                                Future.delayed(
+                                    const Duration(milliseconds: 2000), () {
+                                  booldot1 = false;
+                                  booldot2 = false;
+                                  booldot3 = false;
+                                  booldot4 = false;
+                                  booldot5 = false;
+                                  booldot6 = false;
+                                  // valuesSee = values.toString();
+                                  valuesPass = values.toString();
+                                  if (isOff) {
+                                    valuesPass = "";
+                                  }
+                                  // valuesSee = removeListDebree(valuesSee);
+                                  valuesPass = removeListDebree(valuesPass);
+                                  values.clear();
+                                  setState(() {});
+                                  inDeley = false;
+                                });
+                              }
                             },
                             child: Container(
                               key: _fullContainer,

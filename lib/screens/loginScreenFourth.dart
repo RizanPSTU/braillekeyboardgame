@@ -37,7 +37,7 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
                 padding: EdgeInsets.only(
                     left: leftandrightpad, right: leftandrightpad),
                 child: Text(
-                  'Start pressing the screen with one finger withiut lifting any, you will feel vibration in any single dot.',
+                  'En la siguiente pantalla hay seis puntos: tres en una columna y tres en la otra. Numeraremos los puntos de arriba a abajo, primero con la primera columna y luego con la segunda. Entonces, el tercer punto sería el último de la primera columna. El cuarto punto sería el primero de la segunda columna.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -50,10 +50,10 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
                 padding: EdgeInsets.only(
                     left: leftandrightpad,
                     right: leftandrightpad,
-                    top: 50,
-                    bottom: 20),
+                    top: 5,
+                    bottom: 5),
                 child: Text(
-                  'Once you have finished to feel at least 1 dot, you will pass the test.',
+                  'Vamos a aprender a usar el teclado. Vas a tener que tocar la pantalla con dos dedos, sin levantarlos, para sentir las vibraciones, que marcan la ubicación de los puntos del braille. Entre cada punto, los espacios no vibran.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: bottomText,
@@ -63,10 +63,10 @@ class _LoginScreenFourthState extends State<LoginScreenFourth> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 5),
                 child: ProgressButton(
                   defaultWidget: Text(
-                    'Start the tutorial',
+                    'Empezar el tutorial',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

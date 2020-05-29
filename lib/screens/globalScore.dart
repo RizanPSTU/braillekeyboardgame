@@ -72,7 +72,7 @@ class _GlobalScoreState extends State<GlobalScore> {
                     padding: EdgeInsets.only(
                         top: 10, bottom: 10, left: leftrightfix),
                     child: Text(
-                      "Global Score",
+                      "Puntaje global",
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,

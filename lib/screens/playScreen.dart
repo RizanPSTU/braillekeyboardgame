@@ -54,7 +54,7 @@ class _PlayScreenState extends State<PlayScreen> {
               arguments: {
                 "won": "false",
                 "time": "true",
-                "msg": "Sorry timesup please try again"
+                "msg": "¡Casi! Volvé a intentarlo"
               },
             );
           }

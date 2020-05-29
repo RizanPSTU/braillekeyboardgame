@@ -28,12 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black54,
-        hintColor: Colors.white,
-        textTheme: TextTheme(),
-        primaryTextTheme : TextTheme()
-
-      ),
+          scaffoldBackgroundColor: Color(0xff212121),
+          hintColor: Colors.white,
+          textTheme: TextTheme(),
+          primaryTextTheme: TextTheme()),
       debugShowCheckedModeBanner: false,
       title: 'BrailleGame',
       initialRoute: '/',

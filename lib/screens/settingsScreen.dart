@@ -1,5 +1,6 @@
 import 'package:braillekeyboardgame/function/getPercentage.dart';
 import 'package:braillekeyboardgame/widget/logoutDialog.dart';
+import 'package:email_launcher/email_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Container(
                     width: getPercentSize(100, false, context),
                     child: Text(
-                      "Configuration",
+                      "Configuración",
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -117,7 +118,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
-                        "Configyour braille app",
+                        "Configurá Aprendé Brailling",
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.white,
@@ -154,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 child: Padding(
                                   padding: EdgeInsets.only(left: leftPadding),
                                   child: Text(
-                                    "Sounds & Effests",
+                                    "Sonidos y efectos",
                                     style: textStyle,
                                   ),
                                 ),
@@ -219,19 +220,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   //     ],
                   //   ),
                   // ),
-                  Container(
-                    width: getPercentSize(100, false, context),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        "Brailling as your keyboard",
-                        style: TextStyle(
-                          fontSize: 15, color: Colors.white,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   width: getPercentSize(100, false, context),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(bottom: 20),
+                  //     child: Text(
+                  //       "Brailling as your keyboard",
+                  //       style: TextStyle(
+                  //         fontSize: 15, color: Colors.white,
+                  //         // fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -244,7 +245,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     alignment: Alignment.center,
                     child: MaterialButton(
-                      onPressed: () async {},
+                      onPressed: () async {
+                        Email email = Email(
+                            to: ['braillingapp@gmail.com'],
+                            cc: [''],
+                            bcc: [''],
+                            subject: 'Brailling app tester',
+                            body: '');
+                        await EmailLauncher.launch(email);
+                      },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,22 +271,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: leftPadding),
                                     child: Text(
-                                      "Want to be our tester?",
+                                      "¿Querés ser tester oficial?",
                                       style: textStyle,
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  width: getPercentSize(70, false, context),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: leftPadding),
-                                    child: Text(
-                                      "TODO",
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.grey),
-                                    ),
-                                  ),
-                                ),
+                                // Container(
+                                //   width: getPercentSize(70, false, context),
+                                //   child: Padding(
+                                //     padding: EdgeInsets.only(left: leftPadding),
+                                //     child: Text(
+                                //       "TODO",
+                                //       style: TextStyle(
+                                //           fontSize: 8, color: Colors.grey),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -324,7 +333,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: leftPadding),
                                     child: Text(
-                                      "Donate us!",
+                                      "¡Ayudanos a crecer!",
                                       style: textStyle,
                                     ),
                                   ),
@@ -348,7 +357,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
-                        "Logout Settings",
+                        "Configuración para cerrar sesión",
                         style: TextStyle(
                           fontSize: 15, color: Colors.white,
                           // fontWeight: FontWeight.bold,
@@ -397,7 +406,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.only(left: leftPadding),
                                     child: Text(
-                                      "Disconnect your social account",
+                                      "Click acá para desconectar tu red social",
                                       style: textStyle,
                                     ),
                                   ),

@@ -57,8 +57,8 @@ class _GameEndScreenState extends State<GameEndScreen> {
                   child: ProgressButton(
                     defaultWidget: Text(
                       args["won"] == "true"
-                          ? 'Continue with the next level!'
-                          : 'Retry',
+                          ? 'Pasá al siguiente nivel'
+                          : 'Probá otra vez',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: headThird,
@@ -107,7 +107,7 @@ class _GameEndScreenState extends State<GameEndScreen> {
                   padding: const EdgeInsets.only(top: 10),
                   child: ProgressButton(
                     defaultWidget: Text(
-                      "Goto the main screen",
+                      "O volvé al inicio",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: headThird,

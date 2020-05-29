@@ -41,7 +41,7 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Your are about to start learning braille on your phone. Are you ready?",
+                          "Vas a empezar a aprender braille. ¿Arrancamos?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: headThird,
@@ -53,7 +53,7 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                       Padding(
                         padding: const EdgeInsets.only(top: 50, bottom: 20),
                         child: Text(
-                          'Press "yes" to continue.',
+                          '¡Si, dale!',
                           style: TextStyle(
                               fontSize: bottomText,
                               color: Colors.purple,

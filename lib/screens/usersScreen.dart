@@ -95,12 +95,16 @@ class _UserScreenState extends State<UserScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      height: 100,
-                      width: 100,
-                      child: CircleAvatar(
-                        minRadius: 35,
-                        backgroundImage: NetworkImage(proUrl),
+                    Semantics(
+                      button: true,
+                      label: "Profile Image",
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: CircleAvatar(
+                          minRadius: 35,
+                          backgroundImage: NetworkImage(proUrl),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -113,11 +117,23 @@ class _UserScreenState extends State<UserScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      "Your actual score is: $tootalScore!",
-                      style: TextStyle(fontSize: 15, color: Colors.white
-                          // fontWeight: FontWeight.bold,
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          "Puntaje actual: ",
+                          style: TextStyle(fontSize: 15, color: Colors.white
+                              // fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        Text(
+                          "$tootalScore!",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: sizedBoxHight + 20,
@@ -143,7 +159,7 @@ class _UserScreenState extends State<UserScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Braille Knowlege in",
+                        "Aprender braille en idioma",
                         style: textStyle,
                       ),
                       Padding(
@@ -184,11 +200,11 @@ class _UserScreenState extends State<UserScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "Are you a student or proffesor ?",
+                              "¿Estudiás Accesibilidad o sos profe",
                               style: textStyle,
                             ),
                             Text(
-                              "If you click yes, you will ake to be verified and have promotional codes in future?",
+                              "Al tildar la casilla de verificación, podrías tener beneficios en el futuro.",
                               style: TextStyle(fontSize: 8, color: Colors.grey),
                             ),
                           ],

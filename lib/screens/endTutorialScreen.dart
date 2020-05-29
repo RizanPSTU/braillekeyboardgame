@@ -28,7 +28,7 @@ class _TutorialScreenState extends State<EndTutorialScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Text(
-                  'Are you ready for the next lesson? Keep playing !',
+                  '¿Pasamos al próximo nivel?',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -41,7 +41,7 @@ class _TutorialScreenState extends State<EndTutorialScreen> {
                 padding: const EdgeInsets.only(top: 50),
                 child: ProgressButton(
                   defaultWidget: Text(
-                    'Start learning',
+                    '¡Dale!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

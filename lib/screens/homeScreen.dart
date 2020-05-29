@@ -28,7 +28,7 @@ double leftrightfix = 20;
 double top = 20;
 double iconMinus = 0;
 
-var globalSnapshot;
+List<dynamic> globalSnapshot;
 GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 Widget drawerWidget(
     IconData iconData, String name, double size, BuildContext context) {
@@ -64,13 +64,13 @@ Widget drawerWidget(
 int indexTrack;
 setNewLevel(int index) {
   indexTrack = index;
-  code = globalSnapshot.data.documents[index].data["code"];
-  timeInt = int.parse(globalSnapshot.data.documents[index].data["time"]);
-  pointInt = int.parse(globalSnapshot.data.documents[index].data["point"]);
+  code = globalSnapshot[index].data["code"];
+  timeInt = int.parse(globalSnapshot[index].data["time"]);
+  pointInt = int.parse(globalSnapshot[index].data["point"]);
 
-  processM = globalSnapshot.data.documents[index].data["process"];
-  titleM = globalSnapshot.data.documents[index].data["title"];
-  win = globalSnapshot.data.documents[index].data["win"];
+  processM = globalSnapshot[index].data["process"];
+  titleM = globalSnapshot[index].data["title"];
+  win = globalSnapshot[index].data["win"];
 }
 
 class HomeScreen extends StatefulWidget {
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           drawerKey.currentState.openEndDrawer();
                         }
                       },
-                      child: drawerWidget(Icons.home, "Home", 30, context),
+                      child: drawerWidget(Icons.home, "Inicio", 30, context),
                     ),
                     MaterialButton(
                       onPressed: () {
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                         Navigator.of(context).pushNamed(UserScreen.routeName);
                       },
-                      child: drawerWidget(Icons.person, "Profile", 30, context),
+                      child: drawerWidget(Icons.person, "Perfil", 30, context),
                     ),
                     MaterialButton(
                       onPressed: () async {
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                       },
                       child: drawerWidget(
-                          FontAwesome.heart, "Help Us!", 25, context),
+                          FontAwesome.heart, "¡Ayudanos!", 25, context),
                     ),
                     MaterialButton(
                       onPressed: () {
@@ -178,8 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                         Navigator.of(context).pushNamed(GlobalScore.routeName);
                       },
-                      child:
-                          drawerWidget(Icons.star, "Global Score", 30, context),
+                      child: drawerWidget(
+                          Icons.star, "Puntaje global", 30, context),
                     ),
                     MaterialButton(
                       onPressed: () {
@@ -189,8 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.of(context)
                             .pushNamed(SettingsScreen.routeName);
                       },
-                      child:
-                          drawerWidget(Icons.settings, "Settings", 30, context),
+                      child: drawerWidget(
+                          Icons.settings, "Configuración", 30, context),
                     ),
                   ],
                 ),
@@ -237,31 +237,39 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          MaterialButton(
-                            onPressed: () {
-                              print("on tap");
-                              // _scaffoldKey.currentState.openDrawer();
-                              // Scaffold.of(context).openDrawer();
-                              if (drawerKey.currentState.isDrawerOpen) {
-                                drawerKey.currentState.openEndDrawer();
-                              } else {
-                                drawerKey.currentState.openDrawer();
-                              }
-                            },
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              child: Image.asset('assets/bicon.png'),
+                          Semantics(
+                            button: true,
+                            label: "App drawer",
+                            child: MaterialButton(
+                              onPressed: () {
+                                print("on tap");
+                                // _scaffoldKey.currentState.openDrawer();
+                                // Scaffold.of(context).openDrawer();
+                                if (drawerKey.currentState.isDrawerOpen) {
+                                  drawerKey.currentState.openEndDrawer();
+                                } else {
+                                  drawerKey.currentState.openDrawer();
+                                }
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                child: Image.asset('assets/bicon.png'),
+                              ),
                             ),
                           ),
-                          MaterialButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(UserScreen.routeName);
-                            },
-                            child: CircleAvatar(
-                              minRadius: 35,
-                              backgroundImage: NetworkImage(proUrl),
+                          Semantics(
+                            button: true,
+                            label: "Profile Button",
+                            child: MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(UserScreen.routeName);
+                              },
+                              child: CircleAvatar(
+                                minRadius: 35,
+                                backgroundImage: NetworkImage(proUrl),
+                              ),
                             ),
                           ),
                           // Container(
@@ -286,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 10),
                           child: Text(
-                            "Learning Braille!",
+                            "Lista de niveles",
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
@@ -296,13 +304,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
-                          child: Text(
-                            "Your actual score is: $tootalScore!",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              // fontWeight: FontWeight.bold,
-                            ),
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                "Puntaje actual: ",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "$tootalScore!",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -317,12 +337,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                    globalSnapshot = snapshot;
+                    // var  globalSnapshot = snapshot;
                     // print(snapshot.data.documents.length);
                     // print(snapshot.data.documents[0].data);
                     // {code:  , learn: Learn how to make space, id: 1, time: 15, point: 25}
+
+                    globalSnapshot = snapshot.data.documents.toList();
+
+                    globalSnapshot.sort((a, b) {
+                      int adate = int.parse(a.data['id']);
+                      int bdate = int.parse(b.data['id']);
+                      return adate.compareTo(bdate);
+                    });
                     return Container(
-                      height: getPercentSize(60, true, context),
+                      height: getPercentSize(50, true, context),
                       child: ListView.builder(
                         // itemCount: snapshot.data.documents.length,
                         itemCount: 6,
@@ -335,9 +363,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             child: level(
                               context: context,
-                              learn:
-                                  snapshot.data.documents[index].data["learn"],
-                              level: snapshot.data.documents[index].data["id"],
+                              learn: globalSnapshot[index].data["learn"],
+                              level: globalSnapshot[index].data["id"],
                             ),
                           );
                         },
@@ -346,10 +373,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 3),
                   child: ProgressButton(
                       defaultWidget: Text(
-                        "Unlock and play more level!",
+                        "Desbloqueá más niveles para jugar",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: headThird - 5,
@@ -413,8 +440,9 @@ Widget level({
             //   ),
             // ),
             child: Container(
+              width: getPercentSize(100, false, context),
               child: Text(
-                '$level   "$learn"',
+                '$level  $learn',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: headSceonndtext,
