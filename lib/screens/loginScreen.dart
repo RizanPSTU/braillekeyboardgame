@@ -179,7 +179,7 @@ class _LoginButtonState extends State<LoginButton> {
             children: <Widget>[
               Semantics(
                 button: true,
-                label: "Google sign in",
+                label: "Conectarse con Google",
                 child: GestureDetector(
                   onTap: () async {
                     print("G te tip dise");
@@ -204,7 +204,7 @@ class _LoginButtonState extends State<LoginButton> {
               ),
               Semantics(
                 button: true,
-                label: "Facebook sign in",
+                label: "Conectarse con Facebook",
                 child: GestureDetector(
                   onTap: () async {
                     print("F te tip dise");

@@ -82,10 +82,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               print("on tap");
                               Navigator.pop(context);
                             },
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              size: 50,
-                              color: Colors.white,
+                            child: Semantics(
+                              button: true,
+                              label: "Volver a la pantalla anterior",
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                size: 50,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           // Container(

@@ -22,7 +22,7 @@ class LogoutDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Text(
-                'Are you sure you want to logout?',
+                '¿Querés desconectar tu red social?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: headThird,
@@ -35,7 +35,7 @@ class LogoutDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 50),
               child: ProgressButton(
                 defaultWidget: Text(
-                  'Yes.',
+                  '¡Si! Después vuelvo',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -63,7 +63,7 @@ class LogoutDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ProgressButton(
                 defaultWidget: Text(
-                  "Keep me login",
+                  "No, mantendré mi cuenta relacionadan",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,

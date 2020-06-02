@@ -22,7 +22,7 @@ class BraileDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Text(
-                'Are you sure you want to exit the game?',
+                '¿Queréssalir deljuego?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: headThird,
@@ -35,7 +35,7 @@ class BraileDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 50),
               child: ProgressButton(
                 defaultWidget: Text(
-                  'Yes. Go Home!',
+                  '¡Si! Despuésvuelvo',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -61,7 +61,7 @@ class BraileDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ProgressButton(
                 defaultWidget: Text(
-                  "Keep playing",
+                  "No, sigojugando",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,

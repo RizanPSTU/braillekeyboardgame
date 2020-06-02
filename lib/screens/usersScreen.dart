@@ -68,14 +68,18 @@ class _UserScreenState extends State<UserScreen> {
                         print("on tap");
                         Navigator.pop(context);
                       },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: leftrightfix - iconMinus,
-                            right: leftrightfix),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: iconSizeIosArrow,
-                          color: Colors.white,
+                      child: Semantics(
+                        button: true,
+                        label: "Volver a la pantalla anterior",
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: leftrightfix - iconMinus,
+                              right: leftrightfix),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: iconSizeIosArrow,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

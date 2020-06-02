@@ -43,7 +43,7 @@ class _GameEndScreenState extends State<GameEndScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
-                    '${args["msg"]} + Time Bonus ${multiply * pointInt}',
+                    '${args["msg"]} + Bonuspor velocidad ${multiply * pointInt}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

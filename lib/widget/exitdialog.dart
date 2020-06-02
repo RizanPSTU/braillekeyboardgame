@@ -23,7 +23,7 @@ class ExitDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Text(
-                'Are you sure you want to exit the app?',
+                '¿Querés salir del juego?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: headThird,
@@ -36,7 +36,7 @@ class ExitDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 50),
               child: ProgressButton(
                 defaultWidget: Text(
-                  'Yes. Exit the app',
+                  '¡Si! Después vuelvo',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,
@@ -60,7 +60,7 @@ class ExitDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ProgressButton(
                 defaultWidget: Text(
-                  "Keep in the app",
+                  "No, sigo jugando",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,

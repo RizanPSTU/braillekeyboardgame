@@ -75,7 +75,7 @@ class _InstructionScreenState extends State<InstructionScreen> {
                 padding: const EdgeInsets.only(top: 50),
                 child: ProgressButton(
                   defaultWidget: Text(
-                    'Start Playing!',
+                    '¡Empezara jugar!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

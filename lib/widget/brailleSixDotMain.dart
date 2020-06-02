@@ -266,25 +266,29 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                   } else {
                     if (mainCode[mainCurrentPos] == "_") {
                       vulDhora =
-                          "Should be Space not ${wrongWrite[currentPos]}";
+                          "Debe ser la Space no la ${wrongWrite[currentPos]}"; // Should Space not $
                     } else {
                       vulDhora =
-                          "Should be ${mainCode[mainCurrentPos]} not ${wrongWrite[currentPos]}";
+                          "Debe ser la ${mainCode[mainCurrentPos]} no la ${wrongWrite[currentPos]}"; // Should be $ not $
                     }
                   }
                 } else {
-                  vulDhora = "Remove extra charecter";
+                  vulDhora =
+                      "Borrar carácter de más"; // Remoce extraa charecter
                 }
               } else {
-                vulDhora = "Unknown Barille conbination";
+                vulDhora =
+                    "Esta combinación de braille no existe"; //“Unknown braillie combination”
               }
             }
 
             if (charPress == "N") {
               if (isNumberActive) {
-                vulDhora = "Number mode activated";
+                vulDhora =
+                    "El teclado numérico está activado"; //"Number mode activated"
               } else {
-                vulDhora = "Number mode deactivated";
+                vulDhora =
+                    "El teclado numérico está desactivado."; // Number mode deactivated
               }
             }
 
@@ -297,15 +301,16 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                   wrongWrite = "";
                   currentPos--;
                 } else if (wrongWrite.length == 0) {
-                  vulDhora = "Nothing to remove";
+                  vulDhora = "Nada que borrar"; // Remove extra charecter
                 }
               } else if (currentPos == 0) {
                 wrongWrite = "";
                 currentPos = -1;
               } else if (currentPos == -1) {
-                vulDhora = "Nothing to remove";
+                vulDhora = "Nada que borrar"; // Remove extra charecter
               } else {
-                vulDhora = "Already got right no need to delete";
+                vulDhora =
+                    "No hay nada más que borrar"; //Already got right no need to delete
               }
             }
 
@@ -320,11 +325,11 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
         if (timer.isActive) {
           timer.cancel();
         }
-        vulDhora = "You won";
+        vulDhora = "¡Ganaste!"; // You won
       }
     } else {
       wrongWrite = "";
-      vulDhora = "Time finished";
+      vulDhora = "¡Tiempo terminado!"; //“Time finished”
     }
 
     if (mainCurrentPos == mainCode.length) {
@@ -470,7 +475,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                               if (inDeley == false) {
                                 inDeley = true;
                                 Future.delayed(
-                                    const Duration(milliseconds: 2000), () {
+                                    const Duration(milliseconds: 650), () {
                                   booldot1 = false;
                                   booldot2 = false;
                                   booldot3 = false;

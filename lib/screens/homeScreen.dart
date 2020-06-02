@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Semantics(
                             button: true,
-                            label: "App drawer",
+                            label: "Abrir el menú",
                             child: MaterialButton(
                               onPressed: () {
                                 print("on tap");
@@ -260,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Semantics(
                             button: true,
-                            label: "Profile Button",
+                            label: "Ir a mi perfil.",
                             child: MaterialButton(
                               onPressed: () {
                                 Navigator.of(context)
