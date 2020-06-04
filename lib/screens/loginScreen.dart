@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Text(
                   "¡Brailling te da la bienvenida!",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: heatext,
                       color: Colors.white,
@@ -73,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(top: 50, bottom: 20),
                   child: Text(
                     "Braille en tu smartphone",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: headSceonndtext,
                         color: secondHeadColor,
@@ -101,6 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 //         fontWeight: FontWeight.bold),
                 //   ),
                 // ),
+                SizedBox(
+                  height: 20,
+                ),
                 LoginButton(),
                 // UserProfile(),
               ],
@@ -200,7 +205,7 @@ class _LoginButtonState extends State<LoginButton> {
                 ),
               ),
               SizedBox(
-                width: 20,
+                width: 50,
               ),
               Semantics(
                 button: true,

@@ -28,6 +28,10 @@ class _GameEndScreenState extends State<GameEndScreen> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context).settings.arguments as Map<String, String>;
+
+    String bonusmsg = args["won"] == "true"
+        ? "Bonus por velocidad : ${multiply * pointInt}"
+        : "";
     return WillPopScope(
       onWillPop: () {
         Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
@@ -43,7 +47,7 @@ class _GameEndScreenState extends State<GameEndScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
-                    '${args["msg"]} + Bonuspor velocidad ${multiply * pointInt}',
+                    '${args["msg"]} $bonusmsg',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: headThird,

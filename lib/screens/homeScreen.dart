@@ -350,10 +350,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       return adate.compareTo(bdate);
                     });
                     return Container(
-                      height: getPercentSize(50, true, context),
+                      height: getPercentSize(70, true, context),
                       child: ListView.builder(
-                        // itemCount: snapshot.data.documents.length,
-                        itemCount: 6,
+                        itemCount: snapshot.data.documents.length,
+                        // itemCount: 6,
                         itemBuilder: (BuildContext context, int index) {
                           return MaterialButton(
                             onPressed: () {
@@ -372,29 +372,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: ProgressButton(
-                      defaultWidget: Text(
-                        "Desbloqueá más niveles para jugar",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: headThird - 5,
-                          color: Colors.white,
-                          //fontStyle: FontStyle.italic,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      progressWidget: CircularProgressIndicator(),
-                      borderRadius: 20,
-                      width: getPercentSize(80, false, context),
-                      height: 60,
-                      color: Colors.pinkAccent,
-                      type: ProgressButtonType.Flat,
-                      onPressed: () async {
-                        Navigator.of(context).pushNamed(MoreLevel.routeName);
-                      }),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 3),
+                //   child: ProgressButton(
+                //       defaultWidget: Text(
+                //         "Desbloqueá más niveles para jugar",
+                //         textAlign: TextAlign.center,
+                //         style: TextStyle(
+                //           fontSize: headThird - 5,
+                //           color: Colors.white,
+                //           //fontStyle: FontStyle.italic,
+                //           // fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //       progressWidget: CircularProgressIndicator(),
+                //       borderRadius: 20,
+                //       width: getPercentSize(80, false, context),
+                //       height: 60,
+                //       color: Colors.pinkAccent,
+                //       type: ProgressButtonType.Flat,
+                //       onPressed: () async {
+                //         Navigator.of(context).pushNamed(MoreLevel.routeName);
+                //       }),
+                // ),
               ],
             ),
           ),

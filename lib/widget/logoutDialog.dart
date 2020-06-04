@@ -12,7 +12,8 @@ class LogoutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: Color(0xff212121),
       body: Container(
         alignment: Alignment.center,
         child: Column(
@@ -63,7 +64,7 @@ class LogoutDialog extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ProgressButton(
                 defaultWidget: Text(
-                  "No, mantendré mi cuenta relacionadan",
+                  "No, mantendré mi cuenta relacionada",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: headThird,

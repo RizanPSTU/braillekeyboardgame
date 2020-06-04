@@ -340,7 +340,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
         child: Container(
           height: getPercentSize(100, true, context),
           width: getPercentSize(100, false, context),
-          color: Colors.black,
+          color: Color(0xff212121),
           child: Center(
             child: isOff
                 ? Container(
@@ -497,7 +497,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                             },
                             child: Container(
                               key: _fullContainer,
-                              color: Colors.black,
+                              color: Color(0xff212121),
                               // height: getPercentSize(100, true, context),
                               // width: -getPercentSize(100, false, context),
                               child: Column(

@@ -12,7 +12,7 @@ class BraileDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff212121),
       body: Container(
         alignment: Alignment.center,
         child: Column(

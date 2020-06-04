@@ -39,7 +39,7 @@ class _PlayScreenState extends State<PlayScreen> {
           arguments: {
             "won": "true",
             "time": "false",
-            "msg": "$wonText : $mainPoint"
+            "msg": "$wonText $mainPoint"
           },
         );
       }
