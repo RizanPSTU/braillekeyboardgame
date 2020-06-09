@@ -403,15 +403,15 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
                                 SizedBox(
                                   height: sizeOfDotHightSpace - 60,
                                 ),
-                                Container(
-                                  child: Text(
-                                    "$charPress",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
+                                // Container(
+                                //   child: Text(
+                                //     "$charPress",
+                                //     style: TextStyle(
+                                //         fontSize: 20,
+                                //         color: Colors.red,
+                                //         fontWeight: FontWeight.bold),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

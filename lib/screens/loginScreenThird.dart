@@ -74,7 +74,7 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                             .pushReplacementNamed(LoginScreenFourth.routeName);
                       },
                       child: Text(
-                        "Yes!",
+                        "si, dale!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: headThird - 5,

@@ -237,32 +237,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Semantics(
-                            button: true,
-                            label: "Abrir el menú",
-                            child: MaterialButton(
-                              onPressed: () {
-                                print("on tap");
-                                // _scaffoldKey.currentState.openDrawer();
-                                // Scaffold.of(context).openDrawer();
-                                if (drawerKey.currentState.isDrawerOpen) {
-                                  drawerKey.currentState.openEndDrawer();
-                                } else {
-                                  drawerKey.currentState.openDrawer();
-                                }
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset('assets/bicon.png'),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20.0),
+                            child: Semantics(
+                              button: false,
+                              container: true,
+                              label: "Abrir el menú",
+                              // onTap: () {},
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("on tap");
+                                  // _scaffoldKey.currentState.openDrawer();
+                                  // Scaffold.of(context).openDrawer();
+                                  if (drawerKey.currentState.isDrawerOpen) {
+                                    drawerKey.currentState.openEndDrawer();
+                                  } else {
+                                    drawerKey.currentState.openDrawer();
+                                  }
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset('assets/bicon.png'),
+                                ),
                               ),
                             ),
                           ),
                           Semantics(
-                            button: true,
+                            button: false,
+                            container: true,
                             label: "Ir a mi perfil.",
-                            child: MaterialButton(
-                              onPressed: () {
+                            child: GestureDetector(
+                              onTap: () {
                                 Navigator.of(context)
                                     .pushNamed(UserScreen.routeName);
                               },
