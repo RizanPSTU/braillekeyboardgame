@@ -32,14 +32,14 @@ class _PlayScreenState extends State<PlayScreen> {
           tickCount = tickCount + 1;
         });
       }
-
       if (isWon) {
         Navigator.of(context).pushReplacementNamed(
           GameEndScreen.routeName,
           arguments: {
             "won": "true",
             "time": "false",
-            "msg": "$wonText $mainPoint"
+            // "msg": "$wonText $mainPoint"
+            "msg": "$wonText"
           },
         );
       }

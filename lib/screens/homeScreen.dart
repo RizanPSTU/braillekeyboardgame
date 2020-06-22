@@ -356,17 +356,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       return adate.compareTo(bdate);
                     });
                     return Container(
-                      height: getPercentSize(70, true, context),
+                      height: getPercentSize(65, true, context),
                       child: ListView.builder(
                         itemCount: snapshot.data.documents.length,
                         // itemCount: 6,
                         itemBuilder: (BuildContext context, int index) {
                           return MaterialButton(
-                            onPressed: () {
-                              setNewLevel(index);
-                              Navigator.of(context).pushReplacementNamed(
-                                  InstructionScreen.routeName);
-                            },
+                            onPressed: index > comlevel + 1
+                                ? null
+                                : () {
+                                    setNewLevel(index);
+                                    Navigator.of(context).pushReplacementNamed(
+                                        InstructionScreen.routeName);
+                                  },
                             child: level(
                               context: context,
                               learn: globalSnapshot[index].data["learn"],

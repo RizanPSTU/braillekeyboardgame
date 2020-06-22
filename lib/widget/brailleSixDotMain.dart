@@ -146,10 +146,12 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
 
   bool inDeley = false;
 
+  bool localwon = false;
   @override
   void initState() {
     super.initState();
     isNumberActive = false;
+    localwon = false;
     isWon = false;
     isPressed = false;
     inDeley = false;
@@ -266,7 +268,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
                   } else {
                     if (mainCode[mainCurrentPos] == "_") {
                       vulDhora =
-                          "Debe ser la Space no la ${wrongWrite[currentPos]}"; // Should Space not $
+                          "Debe ser “Espacio” no la ${wrongWrite[currentPos]}"; // Should Space not $
                     } else {
                       vulDhora =
                           "Debe ser la ${mainCode[mainCurrentPos]} no la ${wrongWrite[currentPos]}"; // Should be $ not $
@@ -326,6 +328,7 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
           timer.cancel();
         }
         vulDhora = "¡Ganaste!"; // You won
+
       }
     } else {
       wrongWrite = "";
@@ -333,8 +336,14 @@ class _BarilleMainSixDotState extends State<BarilleMainSixDot> {
     }
 
     if (mainCurrentPos == mainCode.length) {
+      print(
+          "mainCurrentPos: $mainCurrentPos , mainCode.length : ${mainCode.length}");
       isWon = true;
+    } else {
+      print(
+          "mainCurrentPos: $mainCurrentPos , mainCode.length : ${mainCode.length}");
     }
+
     return Scaffold(
       body: SafeArea(
         child: Container(

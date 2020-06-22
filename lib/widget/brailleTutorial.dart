@@ -18,6 +18,7 @@ playsound(BuildContext context) async {
 
 vibrate() {
   HapticFeedback.vibrate();
+// HapticFeedback.
 }
 
 String cheackWhatPressedAndWhatShouldBePressed(
@@ -124,7 +125,7 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
   Widget build(BuildContext context) {
     double sizeOfDot = 120;
     double sizeOfDotSpace = 120;
-    double sizeOfDotHightSpace = 120;
+    double sizeOfDotHightSpace = 100;
     int rightC = 0;
     int leftC = 0;
 
@@ -204,13 +205,13 @@ class _BarilleMainSixDotTutorialState extends State<BarilleMainSixDotTutorial> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: getPercentSize(100, true, context),
+          height: getPercentSize(95, true, context),
           width: getPercentSize(100, false, context),
           color: Colors.black,
           child: Center(
             child: isOff
                 ? Container(
-                    height: getPercentSize(100, true, context),
+                    height: getPercentSize(95, true, context),
                     width: getPercentSize(100, false, context),
                     color: Colors.black,
                   )

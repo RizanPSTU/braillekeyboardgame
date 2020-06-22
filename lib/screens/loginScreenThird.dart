@@ -50,17 +50,6 @@ class _LoginScreenThirdState extends State<LoginScreenThird> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 50, bottom: 20),
-                        child: Text(
-                          '¡Si, dale!',
-                          style: TextStyle(
-                              fontSize: bottomText,
-                              color: Colors.purple,
-                              // fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ),
                     ],
                   ),
                 ),
