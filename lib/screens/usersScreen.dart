@@ -204,7 +204,7 @@ class _UserScreenState extends State<UserScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "¿Estudiás Accesibilidad o sos profe",
+                              "¿Estudiás Accesibilidad o sos profe?",
                               style: textStyle,
                             ),
                             Text(
